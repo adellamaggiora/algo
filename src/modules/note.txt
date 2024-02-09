@@ -1,0 +1,44 @@
+flash cards
+
+definizione di sottosequenza: 
+una sequenza P è sottosequenza di T se 
+P è ottenuto da T rimuovendo uno o più dei suoi elementi.
+Gli elementi rimanenti devono rimanere nello stesso ordine.
+
+sottostruttura ottima:
+un problema presenta una sottostruttura ottima
+se una soluzione ottima del problema contiene al suo interno le soluzioni otti-
+me dei sottoproblemi
+
+programmazione dinamica:
+La programmazione dinamica è una tecnica che aiuta a risolvere in modo efficiente
+una classe di problemi che presentano sottoproblemi sovrapposti e proprietà 
+della sottostruttura ottima.
+
+algoritmo:
+procedimento di risoluzione di un problema attraverso un numero finito di istruzioni (passi computazionali).
+Un algoritmo definisce implicitamente una funzione dall’insieme dei dati di
+ingresso all’insieme dei dati in uscita, ed al tempo stesso indica un procedi-
+mento effettivo che permette di determinare, per ogni possibile configurazione
+in ingresso, i corrispondenti valori in uscita
+
+algoritmo greedy:
+Un algoritmo greedy è un approccio per risolvere un problema selezionando
+la migliore opzione disponibile al momento. 
+Non si preoccupa se il miglior risultato attuale porterà al risultato ottimale complessivo.
+
+heap:
+è una struttura dati basata sugli alberi che soddisfa la "proprietà di heap": 
+se A è un genitore di B, allora la chiave (il valore) di A è ordinata rispetto alla chiave di B
+conformemente alla relazione d'ordine applicata all'intero heap.
+Di conseguenza, gli heap possono essere suddivisi in "max heap" e "min heap".
+
+programma:
+Un programma `e l’esposizione di un algoritmo in un linguaggio
+accuratamente definito. Quindi, il programma di un calcolatore
+rappresenta un algoritmo, per quanto l’algoritmo stesso sia un
+costrutto intellettuale che esiste indipendentemente da qualsiasi
+rappresentazione
+
+
+https://www.programiz.com/dsa/dynamic-programming

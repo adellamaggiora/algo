@@ -1,0 +1,84 @@
+massimo e punto di massimo
+
+f: A -> R
+
+A = [2, 6)
+
+il massimo valore è una y
+il minimo valore è una y
+(sono dei valori che la funzione prende)
+
+punti di massimo
+sono le x (i valori della varibile indipendente) 
+per cui f(x) è uguale al suo massimo 
+
+nota extra
+(y è la variabile dipendente perchè dipende da x)   
+
+massimo e minimo di un insieme sono SEMPRE elementi dell'insieme 
+e quindi elementi compresi dell'insieme
+
+invece sup e inf esistono SEMPRE e sono un sostituto di massimo e minimo
+quando questi ultimi non esistono
+
+un minorante o maggiorante è un qualsiasi numero reale (o reale esteso quindi + o - infinito)
+che sta sotto o sopra un certo insieme.
+quindi maggiorante e minorant e non appartengono mai    all'insieme.
+
+inf di un insieme è il massimo dei minoranti.
+sup di un insieme è il minimo dei maggioranti.
+
+inf e sup esistono SEMPRE, al contrario di max e min.
+se min e max esistono allora concidono con min e max.
+
+un esempio di un insieme dove inf = -infinito e sup = +infinito è l'insieme R
+
+--------------
+continuità (funzioni a variabile reale)
+
+idea: f: A -> R supponendo che A sia un intervallo
+f è continua in un punto x0 appartenente A
+se "facendo avvicinare x a x0 il valore f(x) si avvicina a f(x0)"
+
+f è continua in A se se è continua in tutti gli x0 appartenenti ad A.
+è continua se il suo grafico si può disegnare senza staccare la penna dal foglio.
+
+f(x) è continua in x0 se, scegliendo x abbastanza vicino (delta) a x0, posso fare in modo
+che f(x) sia abbastanza vicino (epsilon) a f(x0)
+
+----------------
+il limite di una funzione è unico
+il limite di f(x) per x -> x0 dipende solo dai valori della f
+vicini a x0 ma NON da f(x0)
+
+il limite ci dice come si sta comportando la funzione in punti vicini 
+a x0 escludendo x0.
+
+Una funzione f: A -> R è continua in x0 esattamente se lim (x->x0) di f(x) = f(x0)
+
+
+------------------
+
+
+##############################
+--- punto di accumulazione ---
+
+un punto di accumulazione di un insieme reale A
+è un punto x0 per il quale, 
+comunque si scelga un intorno completo del punto stesso,
+esiste almeno un punto z dell'insieme A diverso da x0 
+tale da appartenere all'intorno desiderato
+
+
+Sia A un sottoinsieme di R, cioè A ⊆ R, 
+un numero reale x0 si definisce punto di accumulazione di A
+se per ogni U intorno di x0 risulta che U ∩ A \ { x0 } != 0
+
+###############
+--- intorno ---
+
+un intorno completo di un punto x0 è un qualsiasi intervallo aperto
+sia a sinistra che a destra contenente x0
+
+
+

@@ -1,0 +1,81 @@
+ALBERI
+
+è un grafo con proprietà più restrittive:
+
+ogni nodo può avere un solo padre eccetto il nodo radice che non ha antenati
+è aciclico (non è cicliclo) un nodo ha un solo arco entrante
+nodo foglia, non ha figli, non ha archi uscenti
+la chiave è il campo di ricerca appartenente a ogni nodo
+
+un nodo ha una prop chiave (identificativo del nodo) che ci permette di fare le seguenti operazioni
+INSERIMENTO
+RICERCA
+CANCELLAZIONE
+MINIMO
+MASSIMO
+SUCCESSORE 
+PREDECESSORE
+
+l'implementazione non prevede, nella maggiora parte dei linguaggi, dei tipi primitivi pertanto si usano
+strutture a puntatori (insieme dinamico)
+strutture a dimensione fissa (preallocazione, tipo implementazione con array)
+
+l'altezza è il numeri nodi nel percorso di lunghezza massima tra radice e foglia
+grado massimo è il massimo numero di archi uscenti da un nodo
+
+Rappresentazione matematica T (V, E)
+dove V e E sono insiemi V i nodi, E gli archi
+
+
+come si specializza un albero?
+ottimizzazione e specificazione per un dato problema
+
+esempi
+albero con ricerca veloce BST: binary search tree
+
+albero che abbia sempre lo stesso costo di inserimento, cancellazione e ricerca: 2-3 alberi
+
+SE AGGIUNGO RESTRIZIONI A UNA STRUTTURA DATI STO AUMENTANDO LA POTENZIALE EFFICIENZA DI QUEI DATI
+PER AVERE UN ALGORITMO OTTIMIZZATO.
+
+
+// BST Albero Binario di Ricerca
+è una struttura ottimizzata per la ricerca
+
+le proprietà di un BST sono
+ .chiavi da dominio totalmente ordinato
+ .per ogni nodo x valogo entrambe le seguenti
+ 	y.key <= x.key per ogni y appartenente al sottoalber0 sx di x
+ 	y-key >= x-key per ogni y appartenente al sottoalbero dx di x
+
+un nodo divide in un 2 i sottogruppi (minori di e maggiori di)
+
+invariante imposta sull'albero (propreità che deve essere vera in qualsiasi nodo, a qualsiasi iterazione)
+. la chiave del nodo deve essere più grande di tutte le chiavi del sottoalbero sx del nodo stesso
+. la chiave del nodo deve essere più piccola di tutte le chiavi del sottoalbero dx del nodo stesso
+
+su alcuni alberi pago un costo sull'inserimento e cancellazione per bilanciare ma poi guadagno tempo nella ricerca
+l'albero binario di ricerca è lo stesso concetto del binary search ma è implementato in una struttura dati diversa
+il min è il nodo foglia più a sx, il massimo il nodo foglia più a dx
+
+facendo una visita in ordine di un BST si stampano le chiavi ordinate
+
+le operazioni che possiamo implementare su un BST sono:
+
+INSERT(T, key)
+SEARCH(T, key)
+REMOVE(T, key) 
+. se il nodo non ha figli viene eliminato, 
+. se ha filgi viene preso il predecessore o successore (in base al nodo se sx il predecessore, se a dx il successore)
+  e viene rimpiazzato con il nodo eliminato
+  
+ 
+in un BST procedendo da sx verso dx troviamo i nodi ordinati
+un albero binario può essere, nel caso peggiore, completamente sbilanciato.
+ 
+per questo esistono implementazioni più specifiche (alberi rosso-neri, 2-3 alberi, alberi avl) dei BST 
+che mantengono il bilanciamento, oltre che le propreità già viste
+
+ 
+Il fattore di bilanciamento Beta B(v) di un nodo v è la massima differenza di altezza tra il suoi sottoalberi
+ 

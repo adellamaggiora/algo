@@ -1,0 +1,5 @@
+è importante pensare ai sottoproblemi.
+Conoscere le soluzioni dei sottoproblemi, come ottimizzare tali soluzioni
+per rendere ottimale anche la soluzione del problema più grande.
+
+risolvere il sottoproblema e ricordarsi la soluzione del precedente
