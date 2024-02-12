@@ -41,5 +41,6 @@ function printKeys(T: IRootedTree) {
 
 printKeys(tree);
 
-// la visita di un albero (anticipata, simmetrica e posticipata) sembra del tutto simile
-// a quella di un albero binario!! stonks
+// la visita di un albero radicato con un numero di figli arbitrario
+// sembra del tutto simile a quella di un albero binario!! stonks
+// (anticipata, simmetrica e posticipata)

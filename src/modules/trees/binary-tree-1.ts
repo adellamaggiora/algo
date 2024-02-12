@@ -154,12 +154,32 @@ function printBinaryTreeKeys(T: INode) {
 
 
 // 10.4-5
-// Scrivete una procedura non ricorsiva con tempo O.n/ che, dato un albero bina-
+// Scrivete una procedura non ricorsiva con tempo O(n) che, dato un albero bina-
 // rio di n nodi, stampa la chiave di ogni nodo. La procedura non deve utilizzare
 // più di una quantità costante di memoria all’esterno dell’albero stesso e non deve
 // modificare l’albero, neanche solo temporaneamente, durante l’esecuzione.
-function printBinaryTreeKeysNotRecursive(T: INode) {
-    while (T.left) {
-        
+function printBinaryTreeKeysNotRecursive(T: INode | null) {
+    const stack: INode[] = [];
+    let current: INode | null = T;
+
+    while (current !== null || stack.length > 0) {
+        // Arriva fino al nodo più a sinistra dell'albero,
+        // aggiungendo ogni nodo incontrato nella pila.
+        while (current) {
+            stack.push(current);
+            current = current.left;
+        }
+
+        // Verifica se la pila è vuota prima di accedere all'elemento in cima.
+        if (stack.length > 0) {
+            // Prendi il nodo in cima alla pila.
+            current = stack.pop();
+            // Stampa il valore del nodo.
+            console.log(current!.val);
+            // Passa al nodo destro del nodo corrente.
+            current = current!.right;
+        }
     }
 }
+
+printBinaryTreeKeysNotRecursive(tree);
