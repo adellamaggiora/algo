@@ -1,3 +1,10 @@
+/**
+ *   visite
+    -anticipata
+    -posticipata
+    -simmetrica
+ */
+
 const rootNode = {
     key: 1,
     leftChild: {

@@ -38,13 +38,7 @@ const tree: INode = {
             val: 5,
             left: null,
             right: null
-        },
-        right: null
-        // {
-        //     val:212,
-        //     left: null,
-        //     right: null
-        // }
+        }
     }
 }
 
@@ -139,5 +133,33 @@ function getIsFullyBalance(T: INode) {
 
     function getBalanced() {
 
+    }
+}
+
+
+// Scrivete una procedura ricorsiva con tempo O.n/ che, dato un albero binario di n
+// nodi, stampa la chiave di ogni nodo dell’albero.
+function printBinaryTreeKeys(T: INode) {
+    if (!T) {
+        return;
+    }
+    console.log(T.val);
+    printBinaryTreeKeys(T.left);
+    printBinaryTreeKeys(T.right);
+    
+    // console.log(right)
+}
+
+// printBinaryTreeKeys(tree)
+
+
+// 10.4-5
+// Scrivete una procedura non ricorsiva con tempo O.n/ che, dato un albero bina-
+// rio di n nodi, stampa la chiave di ogni nodo. La procedura non deve utilizzare
+// più di una quantità costante di memoria all’esterno dell’albero stesso e non deve
+// modificare l’albero, neanche solo temporaneamente, durante l’esecuzione.
+function printBinaryTreeKeysNotRecursive(T: INode) {
+    while (T.left) {
+        
     }
 }

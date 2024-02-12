@@ -1,0 +1,18 @@
+esistiono molti modi per rappresentare un albero.
+Se tutti i nodi dell'albero hanno un numero finito di figli,
+ovvero k nodi, allora si può prendere in considerazione
+che in ogni nodo dell'albero abbia delle propreità che sono i puntatori ai figli.
+Talvolta però il numero di figli non è noto a priori, oppure può essere molto grande.
+Per questo motivo si usa lo schema
+
+LEFT-CHILD / RIGHT-SIBILING
+
+dove ogni nodo contiene gli attributi
+
+p: puntatore al padre
+left-child: puntatore figlio sinistro
+right-sibiling: puntatore al fratello destro
+
+Poi per altri tipi di albero esistono diverse rappresentazioni.
+Ad esempio è possibile rappresentare un heap (che è un albero bianario completo che
+rispetta la proprietò di heap) attraverso un array più l'indice dell'ultimo elemento.
