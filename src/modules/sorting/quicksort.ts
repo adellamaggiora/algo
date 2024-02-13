@@ -82,6 +82,7 @@ function partition(A: number[], start: number, end: number) {
 }
 
 
+// caso mendio nlogn caso pessimo n^2
 function quicksort(A: number[], start: number, end: number) {
     if (start < end) {
         const pivot = partition(A, start, end);
