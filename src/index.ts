@@ -94,11 +94,15 @@ const maxHeapify = (A: number[], i: number): void => {
  */
 const buildMaxHeap = (A: number[], n: number): void => {
     const p = parentIdx(A, n - 1);
- 
+    // p dovrebbe essere l'ultimo nodo interno
+    // ergo tutti i nodi successivi dovrebbero essere foglie (quindi sono max-heap)
+    // sulle foglie non serve chiamare max-heapify
     for (let i = p; i >= 0; i--) {
         maxHeapify(A, i);        
     }
 }
+
+// costo? O(nlogn) limite superiore, corretto ma "un po' troppo largo"
 
 const arr = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7];
 // buildMaxHeap(arr, arr.length);
