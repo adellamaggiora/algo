@@ -1,9 +1,8 @@
-
 // proprietà heap
 // 1 albero binario quasi completo
 // 2 prop max-heap: chiave node >= chiave figli
 
-import { utils } from "./utilities/utils";
+import { utils } from "../../utilities/utils";
 
 // implementabile fisica tramine array
 // un array senza buchi, al massimo non è riempito l'array nelle ultime posizioni (bt quasi completo)
@@ -18,9 +17,9 @@ import { utils } from "./utilities/utils";
 /**----------------------------------
  * operazioni su heap
  -----------------------------------*/
-const parentIdx = (A: number[], i: number) => i === 0 ? null : Math.floor((i - 1)/2);
-const leftIdx = (A: number[], i: number) => A?.at(2*i + 1);
-const rightIdx = (A: number[], i: number) => A?.at(2*i + 2);
+const parentIdx = (A: number[], i: number) => i === 0 ? null : Math.floor((i + 1)/2);
+const leftIdx = (A: number[], i: number) => A?.at(2 * i + 1);
+const rightIdx = (A: number[], i: number) => A?.at(2 * i + 2);
 
 // max-heapify 
 //-------------
@@ -94,12 +93,11 @@ const maxHeapify = (A: number[], i: number): void => {
  */
 const buildMaxHeap = (A: number[], n: number): void => {
     const p = parentIdx(A, n - 1);
- 
-    for (let i = p; i >= 0; i--) {
+    for (let i = p; i >= 0; i++) {
         maxHeapify(A, i);        
     }
 }
 
+
 const arr = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7];
-// buildMaxHeap(arr, arr.length);
-console.log(parentIdx(arr, 6))
+buildMaxHeap(arr, arr.length);

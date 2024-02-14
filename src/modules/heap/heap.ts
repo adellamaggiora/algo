@@ -123,3 +123,5 @@ console.log('Array dopo heapify su tutti i nodi:', array);
 
 console.log(heapAPI.min(array))
 
+
+
