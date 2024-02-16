@@ -1,0 +1,106 @@
+max-heapify (A, i)
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+scambia il nodo corrente con il figlio con il valore maggire,
+fa scendere un nodo finchè non ristabiliamo la proprietà
+chiamo ricorsivamente max-heapify sul figlio appena scambiato
+
+
+albero binario
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+h = altezza
+
+					nodi tutto ultimo livello + livelli precedenti - radice
+											↓   ↓
+nodi in un albero completo = 2^(h+1)-1
+nodi al k-esimo livello? 2^k
+
+
+costo max-heapify su n nodi?
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+intuitivamente?
+logn? -> deve scendere per l'altezza dell'albero -> SI!
+
+precisamente?
+proviamo a impostare eq. ricorrenza
+
+
+				costo fisso a ogni chiamata ricorsiva
+					↓					
+T(n) = T(?) + Θ(1);
+		 ‾‾‾
+T(?) = per il costo della chaiamata ricorsiva c'è da considerare un caso pessimo
+il caso pessimo si ottiente quando uno dei 2 sotto alberi è sbilanciato
+"tutti i nodi sulla sinistra" -> ultimo livello pieno a metà.
+
+R radice
+N nodo
+h altezza
+k nodi in ogni sottoalber (dx + sx = 2k)
+
+			    R
+				/ \
+	|		/\     /\ 
+h	|	  /  \   /  \
+	|	 /____\ /____\
+		N N N N
+	
+L'eq di ricorrenza va espressa in termini di n
+
+
+T(n) = T(?) + Θ(1)
+
+quanti nodi ci sono nel sottoalbero sx supponendo che il sottoalbero sx abbia altezza h?
+(2^(h+1)-1) nodi
+
+e se aggiungo anche l'ultimo livello?
+[2^(h+1)-1] + 2^(h+1)
+
+la differenza tra l'ultimo livello e tutti i livelli precedenti è semplicemente 1
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+quindi quanti sono i nodi in tutto l'albero nell'albero sbilanciato?
+
+sottoalbero sx - ultimo liv      		sottoalbero dx				ultimo liv sottoalbero sx		radice
+			k								+				k				+					(k+1)					+		1
+
+= 2k + (k+1) +1
+= 3k + 2 nodi
+
+
+l'obiettivo è esprimere l'eq. di ricorrenza rispetto a n
+
+Vinciguerra:
+T(n) = T(sx) + Θ(1);
+"la ricorsione viene fatta sulla dimensione del sottoalbero sx" -> ma come?? 
+abbiamo calcolato il totale dei nodi di TUTTO l'albero! Stiamo a vedere!
+provo a darmi una risposta:
+al caso pessimo l'equazione di ricorrenza percorre la dimensione del sottoalbero sx sbilanciato
+che rappresenta il caso pessimo.
+
+
+nodi sottolabero sx: 	nsx = 2k + 1
+nodi totali:				n = 3k + 2
+
+isoliamo k nell'equazione dei nodi totali:
+(sistema di equazioni a 2 incognite)
+
+n = 3k + 2
+n - 2 = 3k
+(n-2)/3 = k
+k = (n-2)/3
+
+adesso sostituisco nell'equazione nsx
+
+nsx 	= 2[(n-2)/3] + 1
+		= (2/3)n - (1/3)
+		
+		che può essere minorato da 2/3
+		
+		< (2/3)n
+		
+il sottoalbero sx contiene, nel caso pessimo 2/3 del totale dei nodi n
+
+quindi l'equazione di ricorrenza
+
+T(n) = T(2n/3) + Θ(1) -> master theorem O(logn)
+
+dimostrazione del costo di max-heapify conclusa
