@@ -1,0 +1,25 @@
+ogni elemento associato ha un valore (priorità)
+
+operazioni
+
+1) insert(S, x, k) -> inserisce elemento x con chiave k nell'insieme S
+2) extract-max(S) -> rimuove l'elemento con chiave più grande dall'insieme S
+3) maximum(S) -> restituisce l'elemento con chiave più grande
+4) increase-key(S, x, k) -> imposta a k il valore della chiave x nell'insieme S
+                        assume che K > valore corrent
+
+implementazione?
+
+liste collegate
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+1) O(n)
+2) O(1)
+3) O(1)
+4) O(n)
+
+heap
+‾‾‾‾
+1) O(logn)
+2) O(logn)
+3) O(1)
+4) O(logn)
