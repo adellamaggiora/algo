@@ -1,0 +1,9 @@
+| Algoritmo di Ordinamento | Caso Migliore | Caso Medio | Caso Pessimo | In-Place | Stabile |
+|--------------------------|---------------|------------|--------------|----------|---------|
+| Bubble Sort              | O(n)          | O(n^2)     | O(n^2)       | Sì       | Sì      |
+| Insertion Sort           | O(n)          | O(n^2)     | O(n^2)       | Sì       | Sì      |
+| Selection Sort           | O(n^2)        | O(n^2)     | O(n^2)       | Sì       | No      |
+| Merge Sort               | O(n log n)    | O(n log n) | O(n log n)   | No       | Sì      |
+| Quick Sort               | O(n log n)    | O(n log n) | O(n^2)       | Sì       | No      |
+| Heap Sort                | O(n log n)    | O(n log n) | O(n log n)   | Sì       | No      |
+| Radix Sort               | O(nk)         | O(nk)      | O(nk)        | No       | Sì      |

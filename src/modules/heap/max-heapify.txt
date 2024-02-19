@@ -7,10 +7,15 @@ chiamo ricorsivamente max-heapify sul figlio appena scambiato
 
 albero binario
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-h = altezza
+altezza (h): n archi cammino semplice più lungo da quel nodo a una foglia (dal basso verso l'alto)
+livello = numero di archi dal quel nodo alla radice
+parent = Math.floor(i/2)
+left-child = 2i
+right-child = 2i + 1
 
-					nodi tutto ultimo livello + livelli precedenti - radice
-											↓   ↓
+
+	   nodi tutto ultimo livello + livelli precedenti - radice
+							     ↓   ↓
 nodi in un albero completo = 2^(h+1)-1
 nodi al k-esimo livello? 2^k
 
@@ -37,9 +42,9 @@ N nodo
 h altezza
 k nodi in ogni sottoalber (dx + sx = 2k)
 
-			    R
-				/ \
-	|		/\     /\ 
+			   R
+			  / \
+	|	   /\     /\ 
 h	|	  /  \   /  \
 	|	 /____\ /____\
 		N N N N
@@ -56,7 +61,7 @@ e se aggiungo anche l'ultimo livello?
 [2^(h+1)-1] + 2^(h+1)
 
 la differenza tra l'ultimo livello e tutti i livelli precedenti è semplicemente 1
-‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 quindi quanti sono i nodi in tutto l'albero nell'albero sbilanciato?
 
 sottoalbero sx - ultimo liv      		sottoalbero dx				ultimo liv sottoalbero sx		radice
@@ -102,5 +107,41 @@ il sottoalbero sx contiene, nel caso pessimo 2/3 del totale dei nodi n
 quindi l'equazione di ricorrenza
 
 T(n) = T(2n/3) + Θ(1) -> master theorem O(logn)
-
 dimostrazione del costo di max-heapify conclusa
+
+
+build-max-heap
+‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+viene chiamata la funzione max-heapify sui nodi che non sono foglie, partendo dal primo nodo interno
+che è il parent dell'ultimo nodo (i = Math.floor(n/2)) quindi viene eseguita su metà dei nodi.
+Dove sono concentrati la maggior parte dei nodi? in basso!
+Quindi l'altezza della maggior parte dei nodi non è logn ma un po' meno.
+
+il costo di build max-heap, quindi, è O(n) e non O(nlogn)
+
+i = livello											livello					n nodi
+n = n nodi											‾‾‾‾‾‾‾     			‾‾‾‾‾‾
+													0						2^0
+													1						2^1
+													2						2^2
+													3 (Math.floor(logn))	2^3
+
+imposto l'eq di ricorrenza: numero di nodi * livello * altezza di quei nodi
+devo trovare il costo di tutte le chiamate max-heapify che vengono fatte.
+
+	   h
+T(n) = ⅀ ni * hi
+	  i=0
+
+
+heapsort
+‾‾‾‾‾‾‾‾
+idea: abbiamo un array A non ordinato, chiamo build-max-heap O(n), a questo punto so che la radice ha valore massimo
+quindi scrivo l'elemento in ultima posizione dell'array e lo scambio con il primo, quindi richiamo max-heapify sul primo
+elemento, adesso so di nuovo che la radice è l'elemnto max e lo metto in penultima posizione e così via.
+
+costo? n passi * logn (max-heapify) = O(nlogn)
+
+l'idea è molto simile al selection sort, in quest'ultimo veniva scandito l'array alla ricerca del min/max e messo
+in cima o in fonda all'array. la scansione in questo caso è lineare, di costo n, mentre nel max-heap questo costo
+è logaritmico. 
