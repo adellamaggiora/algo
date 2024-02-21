@@ -14,8 +14,8 @@ left-child = 2i
 right-child = 2i + 1
 
 
-	   nodi tutto ultimo livello + livelli precedenti - radice
-							     ↓   ↓
+	nodi tutto ultimo livello + livelli precedenti - radice
+		      	         ↓   ↓
 nodi in un albero completo = 2^(h+1)-1
 nodi al k-esimo livello? 2^k
 
@@ -29,10 +29,10 @@ precisamente?
 proviamo a impostare eq. ricorrenza
 
 
-				costo fisso a ogni chiamata ricorsiva
-					↓					
+costo fisso a ogni chiamata ricorsiva
+		↓					
 T(n) = T(?) + Θ(1);
-		 ‾‾‾
+		 
 T(?) = per il costo della chaiamata ricorsiva c'è da considerare un caso pessimo
 il caso pessimo si ottiente quando uno dei 2 sotto alberi è sbilanciato
 "tutti i nodi sulla sinistra" -> ultimo livello pieno a metà.
@@ -42,8 +42,8 @@ N nodo
 h altezza
 k nodi in ogni sottoalber (dx + sx = 2k)
 
-			   R
-			  / \
+		       R
+		      / \
 	|	   /\     /\ 
 h	|	  /  \   /  \
 	|	 /____\ /____\
@@ -64,8 +64,8 @@ la differenza tra l'ultimo livello e tutti i livelli precedenti è semplicemente
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 quindi quanti sono i nodi in tutto l'albero nell'albero sbilanciato?
 
-sottoalbero sx - ultimo liv      		sottoalbero dx				ultimo liv sottoalbero sx		radice
-			k								+				k				+					(k+1)					+		1
+sottoalbero sx - ultimo liv      	sottoalbero dx		ultimo liv sottoalbero sx		radice
+	k			+		k	  +		(k+1)			+	  1
 
 = 2k + (k+1) +1
 = 3k + 2 nodi
@@ -96,11 +96,11 @@ k = (n-2)/3
 adesso sostituisco nell'equazione nsx
 
 nsx 	= 2[(n-2)/3] + 1
-		= (2/3)n - (1/3)
+	= (2/3)n - (1/3)
 		
-		che può essere minorato da 2/3
+	che può essere minorato da 2/3
 		
-		< (2/3)n
+	< (2/3)n
 		
 il sottoalbero sx contiene, nel caso pessimo 2/3 del totale dei nodi n
 
@@ -119,19 +119,19 @@ Quindi l'altezza della maggior parte dei nodi non è logn ma un po' meno.
 
 il costo di build max-heap, quindi, è O(n) e non O(nlogn)
 
-i = livello											livello					n nodi
-n = n nodi											‾‾‾‾‾‾‾     			‾‾‾‾‾‾
-													0						2^0
-													1						2^1
-													2						2^2
-													3 (Math.floor(logn))	2^3
+i = livello								livello				n nodi
+n = n nodi								‾‾‾‾‾‾‾     			‾‾‾‾‾‾
+									0				2^0
+									1				2^1
+									2				2^2
+									3 (Math.floor(logn))		2^3
 
 imposto l'eq di ricorrenza: numero di nodi * livello * altezza di quei nodi
 devo trovare il costo di tutte le chiamate max-heapify che vengono fatte.
 
-	   h
+       h
 T(n) = ⅀ ni * hi
-	  i=0
+      i=0
 
 
 heapsort
