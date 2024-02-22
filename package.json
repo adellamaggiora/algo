@@ -9,11 +9,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/ramda": "^0.29.10",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1"
   },
   "dependencies": {
     "linked-list": "^3.1.0",
+    "ramda": "^0.29.1",
     "stack-lifo": "^0.1.6"
   }
 }

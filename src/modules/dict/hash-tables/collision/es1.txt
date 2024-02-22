@@ -1,0 +1,100 @@
+data una tabella hash di lunghezza m=11, si supponga di dover inserire (in ordine) le chiavi:
+35, 83, 57, 26, 15, 63, 97 ,46
+con la seguente funzione hash:
+h(k) = k mod m
+
+Si illustrino i risultati dell’inserimento usando:
+1. chaining
+2. probing lineare
+3. probing quadratico H(k) = (h(k) + i^2) mod m
+4. double hashing con h2(k) = 1 + (k mod (m-1))
+
+
+progettazione hash-table
+1 definizione lunghezza tabella -> ok
+2 definizione della funzione hash -> ok
+3 risoluzione delle collisioni -> chiesto nell'esercizio
+
+Disegno la tabella di lunghezza 11
+
+0 |  |
+1 |  |
+2 |  |
+3 |  |
+4 |  |
+5 |  |
+6 |  |
+7 |  |
+8 |  |
+9 |  |
+10|  |
+
+inzio a inserire le chiavi, applicando a ognuna di esse la funzione hash:
+
+h(35)=2, h(83)=6, h(57)=2, h(26)=4, h(15)=4, h(63)=8, h(97)=9, h(46)=2
+
+|35|83|57|26|15|63|97|46|
+| 2| 6| 2| 4| 4| 8| 9| 2|
+
+0 |  |
+1 |  |
+2 |35| -> |57| -> |46|
+3 |  |
+4 |26| -> |15| 
+5 |  |
+6 |83|
+7 |  |
+8 |63|
+9 |97|
+10|  |
+
+--- attenzione ---
+!!No, è sbagliata!!
+l'inserimento delle nuove chiavi con risoluzione CHAINING avviene in testa alla lista,
+di sopra è fatto in coda. Ecco la versione corretta:
+
+0 |  |
+1 |  |
+2 |46| -> |57| -> |35|
+3 |  |
+4 |15| -> |26| 
+5 |  |
+6 |83|
+7 |  |
+8 |63|
+9 |97|
+10|  |
+
+risoluzione con chaining conclusa. 
+
+------------------------------------------------
+Adesso provo la risoluzione delle collisioni con 
+PROBING LINEARE.
+------------------------------------------------
+cos'è il probing lineare?
+è un modo per risolvere le collisioni, se uno slot della tabella è già occupato andiamo al successivo.
+
+ricapitolando gli elementi da inserire, scritti in ordine:
+
+|35|83|57|26|15|63|97|46|
+| 2| 6| 2| 4| 4| 8| 9| 2|
+
+0 |  |
+1 |  |
+2 |35|
+3 |57|
+4 |26| 
+5 |15|
+6 |83|
+7 |46|
+8 |63|
+9 |97|
+10|  |
+
+---------------------------------------------------
+risoluzione delle collisioni con probing quadratico
+---------------------------------------------------
+
+
+
+

@@ -4,7 +4,10 @@ const swap = (A: number[], index1: number, index2: number) => {
     A[index2] = tmp
 }
 
+const square = i => Math.pow(i, 2);
+
 
 export const utils = {
-    swap
+    swap,
+    square
 }
