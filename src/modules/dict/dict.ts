@@ -73,12 +73,24 @@ console.log(hashIntegerFn(192)); // -> 2
 
 // a) CHAINING
 // gli elementi della tabella sono liste
+// inserimento in testa della lista O(1)
+// costo di search e delete O(1 + lambda) lamda = fattore di carico = n/m
+// done m dimensione tabella, n numero di elementi inseriti
 
 // b) OPEN ADDRESSING
 // se la posizione corrente è occupata, usa la "prima successiva" che è libera
 // fase di probing (fase in cui si cerca la successiva)
 // il load factor in questo caso è al più uguale a 1
 // quando questa tabell è piena bisgna fare un'operazione di re-hashing
+// in quetso caso m è una soglia massima che possimao raggiungere, il lambda può essere al max 1
+
+// per trovare l'indice successivo
+//  funzione di probing (tentaitvo: number) => index
+// f(i) = 5i + 4 è una funzione di probing lineare
+// se la funzione di probing non è fatta bene non trovo tutti gli slot delle chaivi
+
+// h(k) funzione hash
+
 
 
 
