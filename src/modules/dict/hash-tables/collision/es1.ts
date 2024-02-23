@@ -11,10 +11,10 @@ const h2 = k => 1 + k % (hashTable.length - 1);
 /**
  * 
  * @param hashTable 
- * @param keys 
- * @param h 
- * @param h2 
- * @param collisionResolution
+ * @param keys Key universe
+ * @param h Primary hash function
+ * @param h2 Secondary hash function (double hashing)
+ * @param collisionResolution 'linearProbing', 'quadraticProbing', or 'doubleHashing'.
  */
 const hasing = (hashTable, keys, h, h2, collisionResolution) => {
 
