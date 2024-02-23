@@ -23,7 +23,7 @@ const hasing = (hashTable, keys, h, h2, collisionResolution) => {
         linearProbing: i => (h(k) + i) % hashTable.length,
         // h(k) + i^2
         quadraticProbing: i => (h(k) + utils.square(i)) % hashTable.length,
-        // h(k) + i h2(k)
+        // h(k) + i * h2(k)
         doubleHashing: i => (h(k) + i * h2(k)) % hashTable.length
     })
 
