@@ -1,4 +1,4 @@
-import { utils } from '../../../../utilities/utils';
+import { utils } from '../../../utilities/utils';
 
 const hashTable = new Array(11).fill(null);
 // key universe
