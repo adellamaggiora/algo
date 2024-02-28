@@ -47,3 +47,6 @@ hasing(hashTable, keys, h, h2, 'linearProbing');
 console.log(hashTable);
 
 
+// la sequenza di probing potrebbe non essere una sequenza di celle distinte
+// quando inseriamo una nuova chiave abbiamo la garanzia di visitare tutti glki indici della tabella
+// solo a opportuni di valori di  
