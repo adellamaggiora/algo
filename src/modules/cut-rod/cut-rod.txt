@@ -1,0 +1,31 @@
+n = lunghezza asta
+p = prezzi 
+r = ricavi massimi
+
+i = indice di taglio
+
+| n | 0 | 1 | 2 | 3 | 4 |
+| p | 0 | 1 | 5 | 8 | 9 |
+| r | 0 | 1 |   |   |   |
+
+un'asta di lunghezza n può essere tagliata in
+2^(n-1) modi
+
+2: taglio / non taglio
+n - 1: possibili indici dove tagliare l'asta
+
+
+qual'è il ricavo massimo che posso avere da un'asta lunga n?
+
+
+
+soluzioni =  from i=o to n-1 => p[n-i], r[i]
+iterazione da i = 0 (asta intera) a n-1 (ultimo taglio possibile)
+
+massimo = max(soluzioni)
+
+
+quali sono i casi base?
+
+r[0] = 0
+r[1] = 1
