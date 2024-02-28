@@ -1,6 +1,8 @@
 import { utils } from '../../../utilities/utils';
 
-const hashTable = new Array(11).fill(null);
+// numero primo
+const hashTableSize = 11
+const hashTable = new Array(hashTableSize).fill(null);
 // key universe
 const keys = [35, 83, 57, 26, 15, 63, 97, 46];
 // primary hash function
