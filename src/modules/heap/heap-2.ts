@@ -17,9 +17,9 @@ import { utils } from "../../utilities/utils";
 /**----------------------------------
  * operazioni su heap
  -----------------------------------*/
-const parentIdx = (A: number[], i: number) => i === 0 ? null : Math.floor((i + 1)/2);
-const leftIdx = (A: number[], i: number) => A?.at(2 * i + 1);
-const rightIdx = (A: number[], i: number) => A?.at(2 * i + 2);
+const parentIdx = (i: number) => i === 0 ? null : Math.floor((i - 1)/2);
+const leftIdx = (i: number) => 2 * i + 1;
+const rightIdx = (i: number) => 2 * i + 2;
 
 // max-heapify 
 //-------------
@@ -37,8 +37,8 @@ const rightIdx = (A: number[], i: number) => A?.at(2 * i + 2);
  * @param i
  */
 const maxHeapify = (A: number[], i: number): void => {
-    const l = leftIdx(A, i);
-    const r = rightIdx(A, i);
+    const l = leftIdx(i);
+    const r = rightIdx(i);
     let maxIndex: number = i;
     // controllo che l sia un indice all'interno dell'array (che non sfori)
     // e scelgo il max tra A[l] e A[i]
@@ -92,12 +92,13 @@ const maxHeapify = (A: number[], i: number): void => {
  * @param n numero di elementi nell'array
  */
 const buildMaxHeap = (A: number[], n: number): void => {
-    const p = parentIdx(A, n - 1);
-    for (let i = p; i >= 0; i++) {
-        maxHeapify(A, i);        
+    const p = parentIdx(n - 1);
+    for (let i = p; i >= 0; i--) {
+        maxHeapify(A, i);
+        console.log(A)        
     }
 }
 
 
-const arr = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7];
+const arr = [4, 1, 3, 2, 16, 9, 10, 99];
 buildMaxHeap(arr, arr.length);

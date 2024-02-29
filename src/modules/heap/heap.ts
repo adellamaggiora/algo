@@ -21,7 +21,7 @@ interface IHeapAPI {
 
 
 const nodeAPI = {
-    parentIndex: (i: number) => Math.floor(i / 2),
+    parentIndex: (i: number) => Math.floor((i - 1) / 2),
     leftChildIndex: (i: number) => 2 * i + 1,
     rightChildIndex: (i: number) => 2 * i + 2
 }
