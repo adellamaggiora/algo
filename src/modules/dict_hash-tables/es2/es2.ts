@@ -41,3 +41,17 @@ console.log(r);
 
 // costo totale = O(nlogr + r^2)
 
+// implementazione con 2-3 albero, supporta le operazioni di inserimento, ricerca, cancellazione
+// costo totale = O(nlogr + rlogr)
+
+
+// TABELLA HASH
+// facendo l'assunzione che D sia implementato come una tabella hash, si analizzi la complessità in funzione di n e del numero r di chiavi distinte
+
+// COSTI
+// @todo cambia dalle liste di trabocco e open addressing?
+// search : Θ(1 + lamda)
+// insert : Θ(1 + lamda)
+
+// assumendo che la funzione di hash sia buona e il fattore di caricamento decente
+// costo totale = Θ(n)
