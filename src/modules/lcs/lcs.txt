@@ -1,0 +1,97 @@
+LONGEST COMMON SUBSEQUENCE (LCS)
+
+definizioni:
+
+. sottosequenza: (A) -> una sequenza di elementi S ottenuta dalla cancellazione di 1 o più elementi da A.
+
+A = <A, B, C, B, D, A, B>   
+S = <   B,       D, A   >
+S = <A, B,       D, A   >
+
+. sottosequenza comune (A, B) -> una sequenza di elementi S che è sottosequenza sia di A che di B.
+
+. sottosequenza comune piu lunga LCS (A, B) -> la più lunga sottosequenza in comune tra A e B.
+
+è un problema di ottimizzazione, voglio trovare la più lunga. tipico di questa classe di problemi risolti
+tramite programmazione dinamica.
+
+
+come procedere?
+-------------------
+brute force
+-------------------
+come tutti i problemi di ottimizzazione, è possibile risolverlo con l'approccio a forza brut(t)a.
+
+LCS(A, B)   m = |A|     n = |B|
+
+1) ci sono 2^m sottosequenze di A.
+2) per ogni sottosequenza di A si verifica se è anche sottosequenza di B (scandisci B per cercare la prima lettera
+della sottosequenza in esambe, e da lì cerca la seconda lettera e così via) Θ(n)
+
+costo totale (tempo): Θ(n2^m)
+
+oppure Θ(m2^n) se calcoliamo prima tutte le sottosequenze di B.
+
+-------------------------------------------------------------------------------
+approccio ricorsivo, formulazione e poi ottimizzazione dei problemi sovrapposti
+-------------------------------------------------------------------------------
+prima devo capire se esiste un modo per formulare il problema in modo ricorsivo:
+
+LCS( A,  B )        A = m           B = n
+
+problemi leggermente più piccoli di quello sopra?
+
+LCS( A', B )        A' = m - 1      
+LCS( A,  B')        B' = n - 1
+
+assumendo che 
+LCS di (A', B') = k
+allora
+LCS(A, B) = k       se x != y  (x e y sono i caratteri tolti da A' e B')
+          = k + 1   se x == y
+
+
+LCS(A, B, m, n)
+    if m == 0 or n == 0
+        return 0;
+    else
+        suffixA <- A[m]
+        suffixB <- B[n]
+
+        if suffixA === suffixB
+            return LCS(A, B, m-1, n-1) + 1
+
+        else
+            return MAX( LCS(A, B, m-1, n), LCS(A, B, m, n-1) )
+
+è una versione molto costosa perchè ha dei problemi sovrapposti 
+
+possiamo renderla iterativa?
+
+partiamo dal problema piccolo (caso baso) e saliamo fino al problema più grande
+
+se avessi 2 stringhe con m=3 n=3 i casi base sono:
+
+LCS(0, 0)
+LCS(1, 0)   
+LCS(2, 0)
+LCS(0, 1)
+LCS(0, 2)
+
+e sono i valori per inizializzare la matrice (0 la prima riga, 0 la seconda riga)
+
+    0   1   2   3   n
+0   0   0   0   0   0
+1   0
+2   0
+3   0
+m   0
+
+posso riempire solo le celle che hanno adiacenze a sx, sopra e diagonale sx,
+quindi posso riempire per righe o per colonne.
+
+@todo add table image with colors
+
+
+tempo O(mn)
+spazion O(mn) con ottimizzazione = O(2m)
