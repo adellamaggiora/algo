@@ -1,0 +1,6 @@
+distanza di edit tra 2 sequenze S1 e S2:
+
+numero di operazioni per rendere uguali 2 stringhe
+
+.possiamo inserire spazi per allinearle
+.la distanza è la somma delle distanze fra coppie di caratteri allineati
