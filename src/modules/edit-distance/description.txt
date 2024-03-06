@@ -1,6 +1,54 @@
 distanza di edit tra 2 sequenze S1 e S2:
+"Quanto sono diverse due sequenze,
+misurabile in quante modifiche occorrono per arrivare da una sequenza all' altra"
 
-numero di operazioni per rendere uguali 2 stringhe
+caratteri uguali: costo 0
+caratteri diversi o allineati con spazio: costo 1
 
-.possiamo inserire spazi per allinearle
-.la distanza è la somma delle distanze fra coppie di caratteri allineati
+esempio:
+
+ALBERO
+LABBRO
+110100  -> costo: 1 + 1 + 1 = 3
+
+ALBERO_
+_LABBRO
+1011111 -> costo: 6
+
+AL_BERO
+_LABBRO
+1010100 -> costo: 3
+
+ricorda: SI POSSONO USARE GLI SPAZI PER LE DIVERSE COMBINAZIONI DA PROVARE!
+
+
+date due sequenze
+X = x1, x2, ... , xn
+Y = y1, y2, ... , yn
+
+
+inizializzazione matrice 
+
+M[0, j] = j
+M[i, 0] = i
+
+indichiamo con p(i, j) da distanza tra 2 elementi
+
+p(i, j) -> 0 | 1 (la distanza tra due elementi può essere al max 1)
+
+M[i, j] = min { M[i, ] }
+
+ED(X, Y, i, j) => MIN{ 
+    ED(X, Y, i, j-1)    + 1
+    ED(X, Y, i-1, j)    + 1
+    ED(X, Y, i-1, j-1)  + p(i, j)    
+} 
+
+
+le due sequenze devono essere allineate anche se hanno lunghezze diverse
+
+
+
+
+
+
