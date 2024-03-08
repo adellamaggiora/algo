@@ -2,4 +2,81 @@
 Conoscere le soluzioni dei sottoproblemi, come ottimizzare tali soluzioni
 per rendere ottimale anche la soluzione del problema più grande.
 
-risolvere il sottoproblema e ricordarsi la soluzione del precedente
+risolvere il sottoproblema e ricordarsi la soluzione del precedente (memoization)
+
+
+
+IL PROBLEMA DELLO ZAINO "INTERO"
+
+massimizzare il valore totale degli oggetti contenuti nello zaino (che ha capienza limitata)
+
+si chiama intero perchè gli oggetti son interi, non possono essere divisi (li prendo oppure no)
+
+W: peso masismo
+I: lista oggetti con attributi { valore, peso }
+
+tutte le possibili cominazioni sono 2^n
+
+una possibile permutazione: (1 prendo, 0 non predo)
+i1 i2 i3 i4 i5
+0  1  1  0  1
+
+rispetto a lcs e edit distance dobbiamo considerare 2 cose anzichè 1: peso e dimensione
+
+Formulazione soluzione ricorsiva:
+
+Sia Sk la soluzione ottima per { i0, i1, ..., ik }
+----------------------------------------------------------
+IMMAGINO DI AVERE UNA SOLUZIONE PER UN CERTO SOTTOPROBLEMA,             ricorsione
+COME COSTRUISCO LA SOLUZIONE PER IL PROBLEMA PIÙ GRANDE?             !idea importante!
+----------------------------------------------------------
+
+in questo caso non è detto che la soluzione ottima di k sia inclusa nella
+soluzione ottima di k + 1, possono anche non avere nulla a che fare insieme.
+
+Sk+1 potrebbe non contenere elementi di Sk
+
+nell'edit distance e lcs invece l'ottimo del prefisso è contenuto nell'ottimo di prefisso + 1
+
+------------------------------------------
+
+qual'è quindi la relazione ricorsiva?
+
+la soluzione ottima può essere derivata da un problema ma non da quello immediatamente più piccolo
+
+"per le righe vado solo sopra, per le colonne faccio dei salti pesi"
+
+
+i == 0 or w == 0    ->   M[i][w] = 0
+o[i].peso > w       ->   M[i][w] = M[i-1][w]
+o[i].peso <=w       ->   MAX{ M[i-1][w], M[i-1][w - o[i-1].peso] + o[i-1].valore }
+
+
+
+Matrice M: n x W
+
+---------------------------------------------
+esempio:
+    .n = 4 (elementi)
+    .W = 5 (peso massimo)          1      2      3       4
+    .o = oggetti {peso, valore}: {2,3}, {3,4}, {4, 5}, {5, 6}
+
+                             w peso locale
+
+                        0   1   2   3   4   5
+                    0   0   0   0   0   0   0
+                    1   0   0   3   3   3   3
+        i           2   0   0   3   4   4   4 
+(indice oggetti)    3   0   0   3   
+                    4   0
+
+
+
+iteriamo tutti gli oggetti i e applichiamo la formula
+
+
+M[2, 3]  
+w[2] = 2
+p
+
+
