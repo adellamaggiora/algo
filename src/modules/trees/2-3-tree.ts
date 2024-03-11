@@ -48,39 +48,143 @@
 // DEVONO RIMANERE TUTTI SULLO STESSO LIVELLO
 
 
-// OPERAZIONI
 
-// implementazione
-
-interface ILeafNode {
-    value: number;
-}
-
-interface IInternalNode {
-    // massima chiave nel sottoalbero del primo figlio di v
-    S: number;
-    // se v ha tre figli, massima chiave nel sottoalbero del secondo figlio di v
-    M?: number;
-    // riferimenti (puntatori) ai nodi figli
-    v1: ILeafNode | IInternalNode;
-    v2: ILeafNode | IInternalNode;
-    v3?: ILeafNode | IInternalNode;
+interface INode {
+    key?: number;
+    /**
+     * massima chaive nel sottoalbero sx
+     */
+    s?: number;
+    /**
+     * massima chiave nel sottoalbero centrale
+     */
+    m?: number;
+    v1?: INode;
+    v2?: INode;
+    v3?: INode;
 
 }
+
+
+const tree: INode = {
+    s: 7,
+    v1: {
+        s: 3,
+        v1: {
+            s: 1,
+            m: 2,
+            v1: {
+                key: 1
+            },
+            v2: {
+                key: 2
+            },
+            v3: {
+                key: 3
+            }
+        },
+        v2: {
+            s: 5,
+            v1: {
+                key: 5
+            },
+            v2: {
+                key: 7
+            }
+        }
+    },
+    v2: {
+        s: 13,
+        v1: {
+            s: 11,
+            v1: {
+                key: 11
+            },
+            v2: {
+                key: 13
+            }
+        },
+        v2: {
+            s: 17,
+            m: 19,
+            v1: {
+                key: 17
+            },
+            v2: {
+                key: 19
+            },
+            v3: {
+                key: 23
+            }
+        }
+    }
+}
+
+const exists = (el) => el !== null && el !== undefined;
+
+const isLeaf = (T) => exists(T.key);
+
+const hasTwoChildren = (T: INode) => [T.v1, T.v2, T.v3]?.filter(exists)?.length === 2;
+
+function search(T: INode, k: number) {
+    if (isLeaf(T)) {
+        if (T.key === k) {
+            return T;
+        }
+        else {
+            return null;
+        }
+    }
+    if (k <= T.s) {
+        return search(T.v1, k);
+    }
+    else if (hasTwoChildren(T) || k <= T.m) {
+        return search(T.v2, k);
+    }
+    else {
+        return search(T.v3, k)
+    }
+}
+
+
+function min(T: INode) {
+    if (isLeaf(T)) {
+        return T.key;
+    }
+    return min(T.v1);
+}
+
+function max(T: INode) {
+    if (isLeaf(T)) {
+        return T.key;
+    }
+    if (exists(T.m)) {
+        return max(T.v3)
+    }
+    else {
+        if (exists(T.v2)) {
+            return max(T.v2);
+        }
+        return max(T.v1)
+    }
+}
+
+
+
 
 // costo Θ(logn)
-const treeSearch = (T: IInternalNode, x: number) => {
+const treeSearch = (T: INode, x: number) => {
     // la ricerca parte dalla radice
     // usare il valori di S e, possibilmente il valore di M
     // questo ci dice se scendere nell'albero sx, centrale o dx
-    
+
     // costo proporzionale all'altezza dell'albero che è Θ(logn)
 
 }
 
 
 // costo Θ(logn)
-const treeInsert = (L: ILeafNode, T: IInternalNode) => {
+const treeInsert = (N: INode, T: INode) => {
     // parte con una ricerca per determinare dove inserire l'elemento
     // bisogna sempre aggiornare gli indici (S, M) del padre e, eventualmente, dei nodi antenati
 
@@ -93,7 +197,7 @@ const treeInsert = (L: ILeafNode, T: IInternalNode) => {
 }
 
 // costo Θ(logn)
-const treeDelete = (L: ILeafNode, T) => {
+const treeDelete = (N: INode, T) => {
     // cancellazione riferimento al nodo da cancellare
     // e aggiornamento dei nodi interni
 
