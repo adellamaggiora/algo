@@ -21,7 +21,7 @@ const tree = {
             dx: null
         },
         dx: {
-            val: 5,
+            val: 7,
             sx: null,
             dx: null
         }
@@ -44,11 +44,14 @@ function contaNodi(t: any, count = 0): any {
 }
 
 
-function contaFoglie(t: any, count = 0): any {
+function contaFoglie(t: any): any {
+    if (!t) {
+        return 0;
+    }
     if (!t.dx || !t.sx) {
         return 1;
     }
-    return contaFoglie(t.sx, count) + contaFoglie(t.dx, count);
+    return contaFoglie(t.sx) + contaFoglie(t.dx);
 }
 
 
@@ -72,10 +75,10 @@ function completo(t: any): any {
     return completo(t.sx) && completo(t.dx);
 }
 
-// un albero binario è completamente bilanciato se è completo e tutte le foglie hanno stessa profondità
-// la profondità di un nodo è il numero di archi dalla radice al nodo
+// Un albero è completamente bilanciato se tutte le foglie sono 
+// sullo stesso livello (altezza) e ogni nodo interno ha due figli.
 function completamenteBilanciato(t: any): any {
-    
+    //@todo
 }
 
 
@@ -84,3 +87,4 @@ function completamenteBilanciato(t: any): any {
 // console.log(contaFoglie(tree))
 // console.log(altezza(tree))
 // console.log(completo(tree))
+// console.log(completamenteBilanciato(tree))
