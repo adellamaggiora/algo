@@ -47,9 +47,9 @@ la soluzione ottima può essere derivata da un problema ma non da quello immedia
 "per le righe vado solo sopra, per le colonne faccio dei salti pesi"
 
 
-i == 0 or w == 0    ->   M[i][w] = 0
-o[i].peso > w       ->   M[i][w] = M[i-1][w]
-o[i].peso <=w       ->   MAX{ M[i-1][w], M[i-1][w - o[i-1].peso] + o[i-1].valore }
+i == 0 or w == 0    ->   M[i][w] = 0                                                "caso base"
+o[i].peso > w       ->   M[i][w] = M[i-1][w]                                        "da sopra"
+o[i].peso <=w       ->   MAX{ M[i-1][w], M[i-1][w - o[i-1].peso] + o[i-1].valore }  ""
 
 
 
