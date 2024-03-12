@@ -48,9 +48,14 @@ const hasing = (
         const handleCollision = collisionManager(k)[collisionResolution];
         for (let i = 0; i < hashTable.length; i++) {
             const hash = handleCollision(i);
+            console.log(`h(${k}) = ${hash} tentativo ${i}`);
             if (hashTable[hash] === null) {
                 hashTable[hash] = k;
+                console.log(`INSERIMENTO DELLA CHIAVE ${k} ALL'INDICE ${hash}`);
                 break;
+            }
+            else {
+                console.log('COLLISIONE');
             }
         }
     }
@@ -58,17 +63,23 @@ const hasing = (
 }
 
 
-const collisionResolution = ECollisionResolution.QuadraticProbing;
+const logger = (collisionResolution: ECollisionResolution) => {
+    console.log(`h1 function:`);
+    console.table(keys.map(k => `h1(${k}) = ${h1(k)}`));
 
-console.log(`h1 function:`);
-console.table(keys.map(k => `h1(${k}) = ${h1(k)}`));
+    if (collisionResolution === ECollisionResolution.DoubleHashing) {
+        console.log(`h2 function:`);
+        console.table(keys.map(k => `h2(${k}) = ${h2(k)}`));
+    }
 
-console.log(`h2 function:`);
-console.table(keys.map(k => `h2(${k}) = ${h2(k)}`));
+    hasing(m, keys, h1, h2, collisionResolution);
+    console.log(`Hash table with collision resolution: ${collisionResolution?.toUpperCase()}`);
+    console.log(`Load factor (m/n): ${m / hashTable.length}`);
+
+    console.table(hashTable);
+}
 
 
-console.log(`Hash table with collision resolution: ${collisionResolution}`);
-hasing(m, keys, h1, h2, collisionResolution);
+logger(ECollisionResolution.QuadraticProbing);
 
 
-console.table(hashTable);
