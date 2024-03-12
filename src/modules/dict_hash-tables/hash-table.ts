@@ -55,14 +55,15 @@ const hasing = (
         const handleCollision = collisionManager(key)[collisionResolution];
         if (k === 0) {
             console.log('-----------------------------------------');
-            console.log(`HASH FUNCTION: `);
-            console.log(handleCollision.toString());
+            console.log(`HASH FUNCTION (risoluzione delle collisioni con ${collisionResolution}):`);
+            console.log (`h(i, k) => ${handleCollision.toString()?.split('=>')?.at(1)}`);
+            console.log(`i è l'indice del tentativo di inserimento`);
             console.log('-----------------------------------------');
             console.log(`\n`)
         }
         for (let i = 0; i < hashTable.length; i++) {
             const hash = handleCollision(i);
-            console.log(`h(${i} ${key}) = ${hash} (tentativo ${i})`);
+            console.log(`h(${i} ${key}) = ${hash}`);
             if (hashTable[hash] === null) {
                 hashTable[hash] = key;
                 console.log(`INSERIMENTO DELLA CHIAVE ${key} ALL'INDICE ${hash}`);
@@ -90,12 +91,12 @@ const logger = (collisionResolution: ECollisionResolution) => {
     hasing(m, keys, h1, h2, collisionResolution);
 
     console.log(`\n`);
-    console.log(`Final hash table with collision resolution: ${collisionResolution?.toUpperCase()}`);
+    console.log(`Final hash table:`);
     console.log(`Load factor (m/n): ${m / hashTable.length}`);
     console.table(hashTable);
 }
 
 
-logger(ECollisionResolution.DoubleHashing);
+logger(ECollisionResolution.LinearProbing);
 
 
