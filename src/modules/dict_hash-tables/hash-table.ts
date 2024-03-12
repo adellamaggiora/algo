@@ -4,6 +4,13 @@ enum ECollisionResolution {
     DoubleHashing = 'doubleHashing'
 }
 
+/**
+ *  README
+ * 
+ * set h1 function, if double hashing is requested then set h2 too
+ * set m (the table size)
+ * set the collision resolution mode
+ */
 
 
 // key universe
@@ -37,7 +44,7 @@ const hasing = (
         // h1(k) + i
         linearProbing: i => (h1(k) + i) % m,
         // h1(k) + i^2 //  // h1(k) + 3i + i^2) mod m
-        quadraticProbing: i => (h1(k) + 3 * i + Math.pow(i, 2)) % m,
+        quadraticProbing: i => (h1(k) + Math.pow(i, 2)) % m,
         // h1(k) + i * h2(k)
         doubleHashing: i => (h1(k) + i * h2(k)) % m
     })
@@ -89,6 +96,6 @@ const logger = (collisionResolution: ECollisionResolution) => {
 }
 
 
-logger(ECollisionResolution.LinearProbing);
+logger(ECollisionResolution.DoubleHashing);
 
 
