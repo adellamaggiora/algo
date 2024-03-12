@@ -1,6 +1,3 @@
-import { utils } from "../../utilities/utils";
-import * as R from 'ramda';
-
 enum ECollisionResolution {
     LinearProbing = 'linearProbing',
     QuadraticProbing = 'quadraticProbing',
@@ -35,23 +32,31 @@ const hasing = (
 
     const collisionManager = k => ({
         // h1(k) + i
-        // h(k) = (h'(k) + 3i + i^2) mod m
         linearProbing: i => (h1(k) + i) % m,
-        // h1(k) + i^2
-        quadraticProbing: i => (h1(k) + 3*i + utils.square(i)) % m,
+        // h1(k) + i^2 //  // h1(k) + 3i + i^2) mod m
+        quadraticProbing: i => (h1(k) + 3 * i + Math.pow(i, 2)) % m,
         // h1(k) + i * h2(k)
         doubleHashing: i => (h1(k) + i * h2(k)) % m
     })
 
 
-    for (const k of keys) {
-        const handleCollision = collisionManager(k)[collisionResolution];
+    for (let k = 0; k < keys.length; k++) {
+        const key = keys[k]
+        const handleCollision = collisionManager(key)[collisionResolution];
+        if (k === 0) {
+            console.log('-----------------------------------------');
+            console.log(`HASH FUNCTION: `);
+            console.log(handleCollision.toString());
+            console.log('-----------------------------------------');
+            console.log(`\n`)
+        }
         for (let i = 0; i < hashTable.length; i++) {
             const hash = handleCollision(i);
-            console.log(`h(${k}) = ${hash} tentativo ${i}`);
+            console.log(`h(${i} ${key}) = ${hash} (tentativo ${i})`);
             if (hashTable[hash] === null) {
-                hashTable[hash] = k;
-                console.log(`INSERIMENTO DELLA CHIAVE ${k} ALL'INDICE ${hash}`);
+                hashTable[hash] = key;
+                console.log(`INSERIMENTO DELLA CHIAVE ${key} ALL'INDICE ${hash}`);
+                console.log('-----------------------------------------');
                 break;
             }
             else {
@@ -64,22 +69,23 @@ const hasing = (
 
 
 const logger = (collisionResolution: ECollisionResolution) => {
-    console.log(`h1 function:`);
+    console.log(`h1 function: ${h1.toString()}`);
     console.table(keys.map(k => `h1(${k}) = ${h1(k)}`));
 
     if (collisionResolution === ECollisionResolution.DoubleHashing) {
-        console.log(`h2 function:`);
+        console.log(`h2 function: ${h2.toString()}`);
         console.table(keys.map(k => `h2(${k}) = ${h2(k)}`));
     }
 
     hasing(m, keys, h1, h2, collisionResolution);
-    console.log(`Hash table with collision resolution: ${collisionResolution?.toUpperCase()}`);
-    console.log(`Load factor (m/n): ${m / hashTable.length}`);
 
+    console.log(`\n`);
+    console.log(`Final hash table with collision resolution: ${collisionResolution?.toUpperCase()}`);
+    console.log(`Load factor (m/n): ${m / hashTable.length}`);
     console.table(hashTable);
 }
 
 
-logger(ECollisionResolution.QuadraticProbing);
+logger(ECollisionResolution.LinearProbing);
 
 
