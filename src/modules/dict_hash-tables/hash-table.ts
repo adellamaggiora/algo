@@ -7,9 +7,10 @@ enum ECollisionResolution {
 /**
  *  README
  * 
- * set h1 function, if double hashing is requested then set h2 too
- * set m (the table size)
- * set the collision resolution mode
+ * imposta m (la grandezza della hash table)
+ * imposta la funzione h1, se è richiesto il double hashing imposta anche la funzione h2
+ * imposta collisionResolution (la stratetgia di risoluzione delle collisioni)
+ * se richiesto, imposta la funzione di quadraticProbing
  */
 
 
@@ -21,6 +22,8 @@ const m = 11;
 const h1 = k => k % m;
 // secondary hash function (double hasing)
 const h2 = k => 1 + k % (m - 1);
+
+const collisionResolution = ECollisionResolution.LinearProbing
 
 const hashTable = new Array(m).fill(null);
 
@@ -97,6 +100,6 @@ const logger = (collisionResolution: ECollisionResolution) => {
 }
 
 
-logger(ECollisionResolution.LinearProbing);
+logger(collisionResolution);
 
 
