@@ -7,9 +7,9 @@ enum ECollisionResolution {
 
 
 // key universe
-const keys = [33, 10, 24, 14, 16, 13, 23, 31, 18, 11, 7];
+const keys = [35, 83, 57, 26, 15, 63, 97, 46];
 // meglio se numero primo
-const m = keys.length;
+const m = 11;
 // primary hash function
 const h1 = k => k % m;
 // secondary hash function (double hasing)
@@ -89,6 +89,6 @@ const logger = (collisionResolution: ECollisionResolution) => {
 }
 
 
-logger(ECollisionResolution.QuadraticProbing);
+logger(ECollisionResolution.LinearProbing);
 
 
