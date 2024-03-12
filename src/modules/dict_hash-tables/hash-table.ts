@@ -1,4 +1,5 @@
 import { utils } from "../../utilities/utils";
+import * as R from 'ramda';
 
 enum ECollisionResolution {
     LinearProbing = 'linearProbing',
@@ -10,7 +11,7 @@ enum ECollisionResolution {
 const m = 11
 const hashTable = new Array(m).fill(null);
 // key universe
-const keys = [35, 83, 57, 26, 15, 63, 97, 46];
+const keys = [33, 10, 24, 14, 16, 13, 23, 31, 18, 11, 7];
 // primary hash function
 const h1 = k => k % m;
 // secondary hash function (double hasing)
@@ -33,11 +34,12 @@ const hasing = (
 ) => {
 
     const collisionManager = k => ({
-        // h(k) + i
+        // h1(k) + i
+        // h(k) = (h'(k) + 3i + i^2) mod m
         linearProbing: i => (h1(k) + i) % m,
-        // h(k) + i^2
-        quadraticProbing: i => (h1(k) + utils.square(i)) % m,
-        // h(k) + i * h2(k)
+        // h1(k) + i^2
+        quadraticProbing: i => (h1(k) + 3*i + utils.square(i)) % m,
+        // h1(k) + i * h2(k)
         doubleHashing: i => (h1(k) + i * h2(k)) % m
     })
 
@@ -56,16 +58,16 @@ const hasing = (
 }
 
 
-console.log(`\n \n h1 function:`);
-console.log(keys.map(k => `h1(${k}) = ${h1(k)}`));
+const collisionResolution = ECollisionResolution.QuadraticProbing;
 
-console.log(`\n \n h2 function:`)
-console.log(keys.map(k => `h2(${k}) = ${h2(k)}`))
+console.log(`h1 function:`);
+console.table(keys.map(k => `h1(${k}) = ${h1(k)}`));
+
+console.log(`h2 function:`);
+console.table(keys.map(k => `h2(${k}) = ${h2(k)}`));
 
 
-
-const collisionResolution = ECollisionResolution.LinearProbing;
-console.log(`\n \n Hash table with collision resolution: ${collisionResolution}`);
+console.log(`Hash table with collision resolution: ${collisionResolution}`);
 hasing(m, keys, h1, h2, collisionResolution);
 
 
