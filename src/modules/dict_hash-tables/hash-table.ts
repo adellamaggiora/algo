@@ -4,15 +4,18 @@ enum ECollisionResolution {
     DoubleHashing = 'doubleHashing'
 }
 
-// numero primo
-const m = 11
-const hashTable = new Array(m).fill(null);
+
+
 // key universe
 const keys = [33, 10, 24, 14, 16, 13, 23, 31, 18, 11, 7];
+// meglio se numero primo
+const m = keys.length;
 // primary hash function
 const h1 = k => k % m;
 // secondary hash function (double hasing)
 const h2 = k => 1 + k % (m - 1);
+
+const hashTable = new Array(m).fill(null);
 
 /**
  * 
@@ -86,6 +89,6 @@ const logger = (collisionResolution: ECollisionResolution) => {
 }
 
 
-logger(ECollisionResolution.LinearProbing);
+logger(ECollisionResolution.QuadraticProbing);
 
 
