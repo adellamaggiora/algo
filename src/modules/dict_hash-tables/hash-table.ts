@@ -23,7 +23,7 @@ const h1 = k => k % m;
 // secondary hash function (double hasing)
 const h2 = k => 1 + k % (m - 1);
 
-const collisionResolution = ECollisionResolution.LinearProbing
+const collisionResolution = ECollisionResolution.QuadraticProbing;
 
 const hashTable = new Array(m).fill(null);
 
