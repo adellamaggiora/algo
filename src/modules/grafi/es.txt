@@ -1,0 +1,3 @@
+dato un grafo, disegnare le liste di adiacenza
+
+date le liste di adiacenza, disegnare un grafo
