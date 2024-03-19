@@ -37,10 +37,13 @@ function trovaMin(t: any): any {
 }
 
 function contaNodi(t: any, count = 0): any {
-    if (!t?.dx || !t.sx) {
+    if (!t) {
+        return 0;
+    }
+    if (t.dx === null && t.sx === null) {
         return 1;
     }
-    return contaNodi(t.sx, count + 1) + contaNodi(t.dx, count + 1) + 1;
+    return contaNodi(t.sx) + contaNodi(t.dx) + 1;
 }
 
 
@@ -48,7 +51,7 @@ function contaFoglie(t: any): any {
     if (!t) {
         return 0;
     }
-    if (!t.dx || !t.sx) {
+    if (t.dx === null && t.sx === null) {
         return 1;
     }
     return contaFoglie(t.sx) + contaFoglie(t.dx);

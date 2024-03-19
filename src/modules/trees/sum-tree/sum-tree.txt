@@ -1,0 +1,10 @@
+Esercizio SumTree
+
+Un SumTree è un albero binario che memorizza chiavi numeriche positive nei
+nodi e in cui la chiave di ogni nodo interno v è uguale alla somma delle chiavi
+degli altri nodi nel sottoalbero radicato in v.
+
+• Si scriva una funzione IsSumTree(t) che restituisce true se e solo se
+l’albero radicato in t è un SumTree. Descrivere brevemente la soluzione
+a parole e fornire lo pseudocodice.
+• Studiare il costo computazionale dell’algoritmo proposto.
