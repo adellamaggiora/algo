@@ -1,0 +1,76 @@
+percorso minimo (shortest path distance): minor numero di archi (se avessimo i pesi dovrei fare la somma di quelli)
+distanza minima: numero archi di un percorso minimo tra 2 nodi
+
+
+
+nodi: V Vertices 
+
+archi: E Edges ->  relazioni tra nodi (spesso pesati, indicato con un numero)
+il peso può anche non essere un numero, ad es. stringhe, simboli, caratteri..
+
+
+G = (V, E)
+
+grafo denso "ci sono molti archi" 	|E| più o meno ugale a |V|^2
+grafo sparso 								|E| più o meno ugale a |V|
+
+grafo sparso: limite inferiore affinchè sia connesso
+nodo collegato a sè stesso: riferimento circolare
+
+rappresentazione grafo:
+- matrice (1 se esiste arco, 0 se non esiste) se il grafo non è orientato è simmetrica alla diagonale
+- lista di adiacenza. per ogni nodo metto una lista dei nodi collegati a lui stesso. O(n + m) dove n=|V|, m=|E|
+
+
+due nodi che sono raggiungibili stanno in una COMPONENTE CONNESSA, quindi se esiste un cammino tra un nodo all'altro
+questa relazione di connessione è una relazione di equivalenza.
+2 vertici che stanno in 2 componenti separate non sono connessi tra loro (non esiste un cammino per raggiungersi)
+
+NASCOSTO DENTRO A UN GRAFO CONNESSO C'È SEMPRE DENTRO UN ALBERO, SPESSO PIÙ DI UN ALBERO
+ALBERO DI COPERTURA DEL GRAFO
+
+nelle componenti sconnesse ognuna di loro ha il suo albero.
+--------------------
+
+Un albero di copertura (o albero di spanning) in un grafo è un sottoinsieme di archi che 
+forma un albero il quale include tutti i vertici del grafo originale, senza creare cicli.
+l'obiettivo è connettere tutti i vertici con il minor numero possibile di archi, mantenendo la struttura libera da cicli
+
+
+ci sono 2 modi per esplorare un albero:
+	. visita per primogenito: ricorsiva su figli (depth-first)
+	. visita per generazioni (breadth-first)
+
+
+
+BREADTH-FIRST SEARCH SU GRAFO NO ALBERO (visita in ampiezza)
+
+"Esplora" un grafo, trasfonrmandolo in un albero
+	. un veritce alla volta
+	. espande la frontiera dei veritici esplorati in ampiezza  
+	Nel contesto della BFS, la frontiera consiste in tutti i vertici che 
+	sono stati visitati ma i cui vicini non sono ancora stati tutti esplorati.
+	
+
+la BFS calcola la shortest-path distance (lunghezza percorso minimo) dal nodo sorgente
+percorso mimino in numero di archi
+la BFS non calcola il percorso minimo in termini di costo	
+	
+la BFS memorizza i padri in ogni nodo.
+alla fine della visita BFS avrò quindi un albero formato da tutti i puntatori ai padri
+ALBERO DI COPERTURA
+ovvero un albero che contiene tutti i nodi connessi dal minimo numero di archi
+necessari per mantenere la connessione senza cicli	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
