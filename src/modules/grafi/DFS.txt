@@ -1,0 +1,72 @@
+COMPONENTE CONNESSA
+Una componente connessa in un grafo è un sottoinsieme di nodi in cui ogni coppia di nodi è connessa da un cammino, e non ci sono collegamenti tra nodi di componenti connesse diverse. In altre parole, all'interno di una componente connessa, è possibile raggiungere ogni nodo partendo da qualsiasi altro nodo della stessa componente, ma non si può arrivare a nodi di altre componenti connesse del grafo. Questo concetto è tipicamente applicato a grafi non orientati.
+
+BFS breadth first search
+
+una coda che mi serve per ricordarmi i nodi che devo andare a visitare dopo
+
+    - trova sempre il cammino di lunghezza minima
+    - in grafi non pesati trova sempre il cammino di costo ottimo
+    - in grafi pesati non sempre trova l'ottimo 
+
+
+BREADTH FIRST TREE
+
+i nodi nell'albero di copertura è un albero che contiene tutti i cammini
+minimi dalla sorgente agli archi.
+-----------------------------------------
+un breadth first tree non è sempre univoco.
+ogni nodo è collegato a un insieme di nodi non ordinato
+quando però rappresento tali collegamenti con una lista di adiacenza (che è una sequenza)
+sto forzando un ordinamento arbitrario che non è intrinseco del problema.
+-----------------------------------------
+più che albero di copertura sarebbe bene parlare di "sottografo dei predecessori"
+(in ogni nodo mi segno chi è il predecessore)
+ 
+-----------------------------------------
+DFS depth first search
+
+visita ricorsiva sul primo vicino (controllo nelle liste di adiacenza)
+caso base: non ci sono più nodi adiacenti visitabili 
+
+tempo di inizio e fine su ogni nodo.
+visita anche le componenti non connesse tra loro.
+
+è simile alla BFS viene usata una PILA anzichè una coda.
+poi vengono visitati tutti i vertici (anche da componenti sconnesse)
+perchè c'è un ciclo foreach. Non c'è nessuna sorgente.
+
+
+tipi di arco dfs:
+https://www.youtube.com/watch?v=2g0TJH_ZJYI&list=PLiMlqFW27wDHMlJIMhzip1DSC-cQkjKa9&index=4&ab_channel=ProfessorPainter
+
+                                                                    nodo partenza   -> nodo arrivo
+    tree edges:                                                         grigio      -> bianco
+    back edges (da discendenti a antenati):                             grigio      -> grigio
+    forward edges (da antenati a discendenti saltandogenerazioni):      grigio      -> nero
+
+rimangono alla fine i 
+    cross edges
+    che collegano alberi diversi o sottoalberi diversi dello stesso albero ( di traverso)
+
+questi 4 archi sono 4 casi della dimostrazione di alcune proprietà
+
+----------------------------------------------
+TEOREMA DELLA PARENTESI  (a seguito di una DFS)
+
+per ogni u, v esattamente una delle seguenti prop è verificata
+
+gli intervalli:
+[u.start, u.end] [v.start, v.end] 
+
+    sono totalmente disgiunti -> nè u nè v sono discendenti
+    l'uno dall'altro
+      u       v  
+    [   ]   [   ]
+
+    intervallo v interamente contenuto in u ->  v è discendente di u (e viceversa)
+      u  v
+    [  [    ]  ]
+
+    gli intervalli non possono intersecarsi 
+
