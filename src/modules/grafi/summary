@@ -1,0 +1,115 @@
+--------------------------------------------------------------------------------------
+DFS Depth First Search, visita ricorsivamente i nodi a partire da un nodo sorgente.
+Tutti i nodi vengono scanditi a causa del ciclo for che assicura la visita anche di
+componenti sconnesse. Determina il tempo di inizio e fine visita per ogni nodo, 
+ricerca i cicli e classifica gli archi del grafo.
+costo O(|V| + |E|)
+
+	G = graph (orientato)
+	s, all = { p: nill, c: white, d: nil, f: nil }
+	
+	DFS(G)
+	time = 0
+		G.V.foreach u => 
+			if u.color == white
+				DFS-VISIT(G,u)
+				
+	DFS-VISIT(G,u)
+		time ++
+		u.d = time
+		u.color = gray
+		u.whiteAdj.foreach v =>
+			v.p = u
+			DFS-VISIT(G, v)
+		
+		u.color = black
+		time ++
+		u.f = time
+		
+--------------------------------------------------------------------------------------
+BFS Breath First Search, trova un albero (non univoco) di copertura con i cammini di
+lunghezza minima a partire dal nodo sorgente
+costo: O(|V|+|E|)
+
+	Q = queue
+	s = { p: nil, d: 0, c: white }
+	all = [{ p: nil, d: Infinity, c: white }]
+	
+	ENQUEUE(Q, s)
+	while Q != empty
+		u = DEQUEUE(Q)
+		u.c = black;
+		u.whiteAdj.foreach v =>
+			v.p = u
+			v.d = u.d + 1
+			v.color = gray
+
+		ENQUEUE(Q, u.whiteAdj)
+
+--------------------------------------------------------------------------------------
+DJIKSTRA Trova l'albero di costo minimo (univoco @tocheck) a partire dal nodo sorgente
+costo: O( (|V|+|E|) log|V| )
+
+	Q = priority queue
+	s = { p: nil, d: 0 }
+	all = [{ p: nil, d: Infinity }]
+	
+	ENQUEUE(Q, ...[s, all])
+	while Q != empty
+		u = DEQUEUE(Q)
+		u.adj.foreach v =>	
+			alt = u.d + weight(u, v)
+			if alt < v.d
+				v.p = u
+				v.d = alt
+				DECREASE_PRIORITY(Q, v)
+			
+--------------------------------------------------------------------------------------
+BELLMAN-FORD restituisce un valore booleano che indica se ci sono cicli di peso
+negativo raggiungibili da s. Se esiste un ciclo negativo -> false, altrimenti calcola
+i cammini di costo minimo -> true
+
+
+	G = Graph (orientato pesato)
+	s = { p: nil, d: 0 }
+	all = [{ p: nil, d: Infinity }]
+
+	for i=1 i<|v|, i++	
+		G.E.foreach (u, v) =>
+			alt = u.d + weight(u, v)
+			if alt < v.d
+				v.p = u
+				v.p = alt
+	
+	G.E.foreach (u, v) => 
+		if v.d > u.d + weight(u, v)
+			return false			
+		return true
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				
+
