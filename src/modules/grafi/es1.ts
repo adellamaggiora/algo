@@ -2,40 +2,40 @@ import { Queue } from "@datastructures-js/queue";
 
 // Inizializzazione dei nodi
 interface INode { 
-    adiacenti?: INode[], 
+    adj?: INode[], 
     c?: 'white' | 'gray' | 'black', 
     d?: number, 
     p?: INode 
 };
 type TGraph = Record<string, INode>;
 
-const nodoA: Partial<INode> = { adiacenti: [] };
-const nodoB: Partial<INode> = { adiacenti: [] };
-const nodoC: Partial<INode> = { adiacenti: [] };
-const nodoD: Partial<INode> = { adiacenti: [] };
-const nodoE: Partial<INode> = { adiacenti: [] };
-const nodoF: Partial<INode> = { adiacenti: [] };
+const nodeA: Partial<INode> = { adj: [] };
+const nodeB: Partial<INode> = { adj: [] };
+const nodeC: Partial<INode> = { adj: [] };
+const nodeD: Partial<INode> = { adj: [] };
+const nodeE: Partial<INode> = { adj: [] };
+const nodeF: Partial<INode> = { adj: [] };
 
 // Configurazione delle adiacenze (simulazione di "puntatori")
-nodoA.adiacenti.push(nodoB, nodoC);
-nodoB.adiacenti.push(nodoA, nodoD, nodoE);
-nodoC.adiacenti.push(nodoA, nodoF);
-nodoD.adiacenti.push(nodoB);
-nodoE.adiacenti.push(nodoB, nodoF);
-nodoF.adiacenti.push(nodoC, nodoE);
+nodeA.adj.push(nodeB, nodeC);
+nodeB.adj.push(nodeA, nodeD, nodeE);
+nodeC.adj.push(nodeA, nodeF);
+nodeD.adj.push(nodeB);
+nodeE.adj.push(nodeB);
+nodeF.adj.push(nodeC);
 
 // Il grafo è rappresentato da un oggetto che tiene traccia dei nodi
-const graph: TGraph = { A: nodoA, B: nodoB, C: nodoC, D: nodoD, E: nodoE, F: nodoF };
+const graph: TGraph = { A: nodeA, B: nodeB, C: nodeC, D: nodeD, E: nodeE, F: nodeF };
 
-function leggiVertici(G) {
+function getNodes(G) {
     return Object.keys(G).map(key => G[key])
 }
 
 
-function BFS(G: TGraph, v: string) {
+function BFS(G: TGraph, S: INode) {
 
     const Q = new Queue<Partial<INode>>()
-    const nodes = leggiVertici(G);
+    const nodes = getNodes(G);
 
     // init
     for (const n of nodes) {
@@ -44,14 +44,14 @@ function BFS(G: TGraph, v: string) {
         n.d = Infinity;
     }
 
-    G[v].c = 'gray';
-    G[v].p = null;
-    G[v].d = 0;
-    Q.enqueue(G[v]);  
+    S.c = 'gray';
+    S.p = null;
+    S.d = 0;
+    Q.enqueue(S);  
 
     while (!Q.isEmpty()) {
         const u = Q.dequeue();
-        u.adiacenti.forEach(node => {
+        u.adj.forEach(node => {
             if (node.c === 'white') {
                 node.c = 'gray';
                 node.p = u;
@@ -64,9 +64,11 @@ function BFS(G: TGraph, v: string) {
     return G;
 }
 
-const result = BFS(graph, 'A');
 
-console.log(result);
+// console.log(BFS(graph, nodeA));
+
+
+
 
 // Dato un grafo G = (V, E) non orientato, progettare un algoritmo
 // efficiente per stabilire se G è un albero
@@ -77,8 +79,41 @@ console.log(result);
 // l'esistenza di un ciclo posso anche verificarla con la BFS. 
 // se dal nodo che sto visitando noto che un suo adiacente
 // che non il padre è di colore grigio o nero
+function graphHasCycles(G: TGraph, S: INode) {
+    const Q = new Queue<Partial<INode>>()
+    const nodes = getNodes(G);
 
+    // init
+    for (const n of nodes) {
+        n.c = 'white';
+        n.p = null;
+        n.d = Infinity;
+    }
 
-function graphHasCycles(G: TGraph) {
+    S.c = 'gray';
+    S.p = null;
+    S.d = 0;
+    Q.enqueue(S);  
 
+    let hasCycle = false;
+
+    while (!Q.isEmpty()) {
+        const u = Q.dequeue();
+        u.adj.forEach(node => {
+            if (node.c === 'gray' && node.p !== u) {
+                hasCycle = true;
+            }
+            else if (node.c === 'white') {
+                node.c = 'gray';
+                node.p = u;
+                Q.enqueue(node);
+            }
+        })
+        u.c = 'black';
+    }
+
+    return hasCycle;
 }
+
+const res2 = graphHasCycles(graph, nodeA);
+console.log(res2);
