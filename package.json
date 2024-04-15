@@ -15,6 +15,7 @@
     "ts-node": "^10.9.1"
   },
   "dependencies": {
+    "@datastructures-js/queue": "^4.2.3",
     "linked-list": "^3.1.0",
     "ramda": "^0.29.1",
     "stack-lifo": "^0.1.6"
