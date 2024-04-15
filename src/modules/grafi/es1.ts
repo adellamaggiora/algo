@@ -1,11 +1,11 @@
 import { Queue } from "@datastructures-js/queue";
 
 // Inizializzazione dei nodi
-interface INode { 
-    adj?: INode[], 
-    c?: 'white' | 'gray' | 'black', 
-    d?: number, 
-    p?: INode 
+interface INode {
+    adj?: INode[],
+    c?: 'white' | 'gray' | 'black',
+    d?: number,
+    p?: INode
 };
 type TGraph = Record<string, INode>;
 
@@ -17,25 +17,24 @@ const nodeE: Partial<INode> = { adj: [] };
 const nodeF: Partial<INode> = { adj: [] };
 
 // Configurazione delle adiacenze (simulazione di "puntatori")
-nodeA.adj.push(nodeB, nodeC);
-nodeB.adj.push(nodeA, nodeD, nodeE);
-nodeC.adj.push(nodeA, nodeF);
-nodeD.adj.push(nodeB);
+nodeA.adj.push(nodeB, nodeC, nodeD);
+nodeB.adj.push(nodeD);
+nodeC.adj.push(nodeD, nodeE);
+nodeD.adj.push();
 nodeE.adj.push(nodeB);
-nodeF.adj.push(nodeC);
 
 // Il grafo è rappresentato da un oggetto che tiene traccia dei nodi
 const graph: TGraph = { A: nodeA, B: nodeB, C: nodeC, D: nodeD, E: nodeE, F: nodeF };
 
-function getNodes(G) {
+function getNodes(G): INode[] {
     return Object.keys(G).map(key => G[key])
 }
 
 
-function BFS(G: TGraph, S: INode) {
+function BFS(G: TGraph, s: INode) {
 
     const Q = new Queue<Partial<INode>>()
-    const nodes = getNodes(G);
+    const nodes: INode[] = getNodes(G);
 
     // init
     for (const n of nodes) {
@@ -44,10 +43,10 @@ function BFS(G: TGraph, S: INode) {
         n.d = Infinity;
     }
 
-    S.c = 'gray';
-    S.p = null;
-    S.d = 0;
-    Q.enqueue(S);  
+    s.c = 'gray';
+    s.p = null;
+    s.d = 0;
+    Q.enqueue(s);
 
     while (!Q.isEmpty()) {
         const u = Q.dequeue();
@@ -64,8 +63,12 @@ function BFS(G: TGraph, S: INode) {
     return G;
 }
 
+// const res1 = BFS(graph, nodeA);
+// console.log(res1);
 
-// console.log(BFS(graph, nodeA));
+
+
+
 
 
 
@@ -79,7 +82,7 @@ function BFS(G: TGraph, S: INode) {
 // l'esistenza di un ciclo posso anche verificarla con la BFS. 
 // se dal nodo che sto visitando noto che un suo adiacente
 // che non il padre è di colore grigio o nero
-function graphHasCycles(G: TGraph, S: INode) {
+function graphHasCycles(G: TGraph, s: INode) {
     const Q = new Queue<Partial<INode>>()
     const nodes = getNodes(G);
 
@@ -90,10 +93,10 @@ function graphHasCycles(G: TGraph, S: INode) {
         n.d = Infinity;
     }
 
-    S.c = 'gray';
-    S.p = null;
-    S.d = 0;
-    Q.enqueue(S);  
+    s.c = 'gray';
+    s.p = null;
+    s.d = 0;
+    Q.enqueue(s);
 
     let hasCycle = false;
 
@@ -115,5 +118,83 @@ function graphHasCycles(G: TGraph, S: INode) {
     return hasCycle;
 }
 
-const res2 = graphHasCycles(graph, nodeA);
-console.log(res2);
+// const res2 = graphHasCycles(graph, nodeA);
+// console.log(res2);
+
+
+
+
+
+
+
+
+
+
+
+
+// Sia G = (V, E) un grafo connesso e non orientato. Progettare un
+// algoritmo che ricevuto in ingresso G e un suo vertice s, restituisca il
+// numero di vertici che si trovano a distanza massima da s
+
+function BFS_MAX(G: TGraph, s: INode) {
+
+    const Q = new Queue<Partial<INode>>()
+    const nodes = getNodes(G);
+
+    let count = 0;
+    let max = 0;
+
+    // init
+    for (const n of nodes) {
+        n.c = 'white';
+        n.p = null;
+        n.d = Infinity;
+    }
+
+    s.c = 'gray';
+    s.p = null;
+    s.d = 0;
+    Q.enqueue(s);
+    // end init
+
+    while (!Q.isEmpty()) {
+        const u = Q.dequeue();
+        u.adj.forEach(node => {
+            if (node.c === 'white') {
+                const distance = u.d + 1;
+                if (distance === max) {
+                    count++;
+                }
+                else if (distance > max) {
+                    max = distance;
+                    count = 1;
+                }
+                node.d = distance;
+                node.c = 'gray';
+                node.p = u;  
+                Q.enqueue(node);
+            }
+        })
+        u.c = 'black';
+    }
+    return count;
+}
+
+// const res3 = BFS_MAX(graph, nodeA);
+// console.log(res3);
+
+
+
+
+
+
+
+// Un pozzo universale in un grafo orientato G è un vertice di grado
+// uscente 0 e di grado entrante uguale a n-1, dove n è il numero di
+// vertici del grafo. Si osservi che, se esiste, il pozzo è unico. Scrivere
+// una procedura in pseudocodice per trovare il pozzo in G
+
+// grafo rappresentato come matrice quadrata
+function detectSink(G: number[][]) {
+
+}
