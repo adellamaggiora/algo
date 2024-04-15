@@ -10,7 +10,7 @@ const nodoD: Partial<IGNode> = { adiacenti: [] };
 const nodoE: Partial<IGNode> = { adiacenti: [] };
 const nodoF: Partial<IGNode> = { adiacenti: [] };
 
-// Configurazione delle adiacenze (simulazione di "puntatori")
+// Configurazione delle adiacenze
 nodoA.adiacenti.push(nodoB, nodoC);
 nodoB.adiacenti.push(nodoA, nodoD, nodoE);
 nodoC.adiacenti.push(nodoA, nodoF);
@@ -50,14 +50,14 @@ function BFS(G, v) {
                 node.c = 'grigio';
                 node.p = u;
                 node.d = u.d + 1;
-                Q.enqueue(node)
+                Q.enqueue(node);
             }
         })
-        u.c = 'nero'
+        u.c = 'nero';
     }
-    return G
+    return G;
 }
 
-const result = BFS(grafo, 'A')
+const result = BFS(grafo, 'A');
 
-console.log(result)
+console.log(result);
