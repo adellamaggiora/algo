@@ -240,9 +240,47 @@ console.log(res4);
 
 
 
-// Dato un grafo diretto (orientato) aciclico G e due nodi s, t 
-// progettare un algoritmo lineare in |V| e |E| in grado di trovare 
-// il cammino più lungo tra s e t
+// al momento non funziona
+function DFS2(G: TGraph) {
 
-// DFS
+    let counter = 1;
+    const stack = generateStack();
+    const nodes = getNodes(G);
+
+    for (const n of nodes) {
+        n.c = 'white';
+        n.p = null;
+        n.start = null;
+        n.end = null;
+    }
+
+    const s = nodes[0];
+    s.c = 'gray';
+    s.p = null;
+    s.start = counter;
+    stack.push(s);
+
+    while (!stack.isEmpty()) {
+        const u: INode = stack.pop();
+        u.adj.forEach(node => {
+            if (node.c === 'white') {
+                counter++;
+                node.start = counter;
+                node.c = 'gray';
+                node.p = u;
+                stack.push(node);
+            }
+        })
+        u.c = 'black';
+        counter++;
+        u.end = counter;
+    }
+
+    return G;
+
+}
+
+
+const res5 = DFS2(graph);
+console.log(res5);
 
