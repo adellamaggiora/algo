@@ -1,11 +1,15 @@
 import { Queue } from "@datastructures-js/queue";
+import { generateStack } from "../stack/stack";
+
 
 // Inizializzazione dei nodi
 interface INode {
     adj?: INode[],
     c?: 'white' | 'gray' | 'black',
     d?: number,
-    p?: INode
+    p?: INode,
+    start?: number,
+    end?: number
 };
 type TGraph = Record<string, INode>;
 
@@ -29,6 +33,7 @@ const graph: TGraph = { A: nodeA, B: nodeB, C: nodeC, D: nodeD, E: nodeE, F: nod
 function getNodes(G): INode[] {
     return Object.keys(G).map(key => G[key])
 }
+
 
 
 function BFS(G: TGraph, s: INode) {
@@ -65,6 +70,7 @@ function BFS(G: TGraph, s: INode) {
 
 // const res1 = BFS(graph, nodeA);
 // console.log(res1);
+// la DFS non usa una pila come struttura dati di appoggio!
 
 
 
@@ -186,15 +192,57 @@ function BFS_MAX(G: TGraph, s: INode) {
 
 
 
+// la DFS non usa una pila come struttura dati di appoggio!
+function DFS(G: TGraph) {
 
+    let counter = 1;
+    // const stack = generateStack();
+    const nodes = getNodes(G);
 
+    for (const n of nodes) {
+        n.c = 'white';
+        n.p = null;
+        n.start = null;
+        n.end = null;
+    }
 
-// Un pozzo universale in un grafo orientato G è un vertice di grado
-// uscente 0 e di grado entrante uguale a n-1, dove n è il numero di
-// vertici del grafo. Si osservi che, se esiste, il pozzo è unico. Scrivere
-// una procedura in pseudocodice per trovare il pozzo in G
+    for (const n of nodes) {
+        if (n.c === 'white') {
+            dfs_visit(G, n);
+        }
+    }
 
-// grafo rappresentato come matrice quadrata
-function detectSink(G: number[][]) {
+    function dfs_visit(G: TGraph, s: INode) {
+        counter++;
+        s.start = counter;
+        s.c = 'gray';
+        s.adj.forEach(node => {
+            if (node.c === 'white') {
+                node.p = s;
+                dfs_visit(G, node);
+            }
+        })
+        s.c = 'black';
+        counter++;
+        s.end = counter;
+    }
+
+    return G;
 
 }
+
+
+const res4 = DFS(graph);
+console.log(res4);
+
+
+
+
+
+
+// Dato un grafo diretto (orientato) aciclico G e due nodi s, t 
+// progettare un algoritmo lineare in |V| e |E| in grado di trovare 
+// il cammino più lungo tra s e t
+
+// DFS
+

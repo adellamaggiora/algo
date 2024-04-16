@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 // pila: Stack, LIFO (last in, first out)
 // // API
 // isEmpty
@@ -5,40 +6,43 @@
 // pop O(1)
 // top O(1)
 
-// indice del primo elemento libero nell'array
-let topIndex = 0;
-let stack = [];
+export function generateStack() {
+    // indice del primo elemento libero nell'array
+    let topIndex = 0;
+    let stack = [];
 
-function isEmpty() {
-    if (topIndex <=0) {
-        return true;
+    function isEmpty() {
+        if (topIndex <= 0) {
+            return true;
+        }
+        return false;
     }
-    return false;
-}
 
-function push(item: any) {
-    stack[topIndex] = item;
-    topIndex++;
-}
-
-function pop() {
-    if (isEmpty()) {
-        console.log('empty stack! operatio not peritted');
+    function push(item: any) {
+        stack[topIndex] = item;
+        topIndex++;
     }
-    stack[topIndex-1] = null;
-    topIndex--;
+
+    function pop() {
+        if (isEmpty()) {
+            console.log('empty stack! operation not peritted');
+            return;
+        }
+        const el =  R.clone(stack[topIndex - 1]);
+        stack[topIndex - 1] = null;
+        topIndex--;
+        return el
+    }
+
+    function top() {
+        return stack[topIndex - 1];
+    }
+
+    return {
+        isEmpty,
+        push,
+        pop,
+        top
+    }
 }
 
-function getTop() {
-    return stack[topIndex-1];
-}
-
-console.log(stack)
-push(2)
-console.log(stack)
-push('hello world')
-console.log(stack)
-pop()
-console.log(stack)
-push(212)
-console.log(stack)
