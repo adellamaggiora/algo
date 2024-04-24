@@ -1,0 +1,50 @@
+dizionario: una struttura dati che permette di associare un valore a una chiave
+
+hash table: un dizionario in cui le chiavi sono generate da una hash function
+
+funzione di hash: ad esempio è il modulo di un numero h(k) -> k % m
+
+algoritmo deterministico: a parità di input restituisce sempre lo stesso risultato
+
+la risoluzione delle collisioni avviene attraverso 
+	probing lineare (k, i) -> h(k) + i
+	probing quadratico (k, i) -> h(k) + i^2
+	double hashing (k, i) -> [ h(k) + i * h2(k) ] % m
+	
+bloom filter: struttura dati probabilistica, progettata per il test di appartenenza di un elemento in un insieme.
+Ci possono essere falis positivi (elemento segnalato presente anche quando non lo è) ma non falsi negativi.
+Per minimizzare i falsi positivi usiamo più funzioni di hash e mappiamo i risultati su più array di bit.
+
+programmazione dinamica: è un paradigma usato per risolvere problemi di ottimizzazione, ovvero trovare la soluzione 
+più efficiente per un certo problema. Si utilizza un approccio ricorsivo, dove però, al contrario del paradigma 
+divide et impera, i sottoproblemi del problema più grande sono sovrapposti tra loro e non indipendenti.
+Per questo motivo è possibile memorizzare i valori a partire dal caso base e procedendo fino al problema più grande
+seguendo un approccio bottom-up, prima risolvo i sottoproblemi più piccoli e usi tali problemi per risolvere
+i problemi più grandi che contengono le soluzioni precedenti.
+
+heap: è una struttura dati ad albero con prop strutturale -> albero binario quasi completo, l'inserimento di un
+nuovo elemento viene sempre fatto nel nodo foglia. prop sui dati -> i nodi hanno figli >= (max-heap) o <= (min-heap)
+
+reheapification-upward: sposta ricorsivamente il nodo foglia più a dx verso l'alto (i suoi antenati), 
+nel caso non sia rispettata la prop sui dati. O(logn)
+
+reheapification-downward: sposta ricorsivamente il nodo radice verso il basso (i suoi discendenti) fin tanto
+che non è ristabilita la prop sui dati. O(logn)
+
+heapsort: su un heap tolgo il nodo radice, si mette in un array. sposto il nodo foglia nel nodo radice.
+Reheapification-downward. ripeto per tutti i nodi dell'albero. O(nlogn)
+
+visita in-order: pallino nel centro, ricorsivamente, stampo il valore in mezzo alle 2 chiamate ricorsive 
+(sottoalbero dx e sx)
+
+bst (abr): binary search tree (albero binario di ricerca) è un albero binario che può essere sbilanciato.
+le operazioni costano O(h), quindi O(n) nel caso peggiore (completamente sbilanciato).
+La prop sui dati è che ongi nodo ha chiavi <= nel proprio sottoalbero sx e >= nel proprio sottoalbero dx
+
+   
+
+
+
+
+
+
