@@ -41,7 +41,34 @@ bst (abr): binary search tree (albero binario di ricerca) è un albero binario c
 le operazioni costano O(h), quindi O(n) nel caso peggiore (completamente sbilanciato).
 La prop sui dati è che ongi nodo ha chiavi <= nel proprio sottoalbero sx e >= nel proprio sottoalbero dx
 
-   
+selection sort: scandisce l'array, aggiornando di volta in volta il minimo, poi lo mette in testa.
+Simile all'heap sort solo che la scansione in questo caso cosa O(n) mentre nell'heapsort O(logn).
+Costo dell'algoritmo O(n^2)
+
+insertion sort: scandisce l'array, se l'elemento corrente è > del precedente viene fatto uno scambio finchè il 
+precedente elemento non < dell'elemento corrente.
+Costo O(n^2)
+
+divide et impera: un paradigma per risolvere un problema dividendolo in sotto problemi più piccoli (DIVIDE)
+Quando il problema è abbastanza piccolo (caso base) allora è possibile risolverlo facilmente (IMPERA).
+I sottoproblemi sono disgiunti e quindi non è possibili memorizzare i riultati intermedi come nella
+programmazione dinamica.
+Quando i sottoproblemi sono stati risolti vengono ricombinati insieme per risolvere il problema
+originale (COMBINA).
+
+merge sort: utilizza il paradigma divide-et-impera per ordinare un array (non in-place). Divide l'array in
+sottoproblemi più piccoli fino ad arrivare al caso base. Vengono ricombinati i sottoproblemi in ordine.
+O(nlogn)
+
+ricerca lineare: ricerca un elemento in una collezione in modo sequenziale, nel caso peggiore vengono
+scanditi tutti gli elementi della collezione. O(n)
+
+ricerca binaria: per eseguirla è necessario che la collezione sia ordinata. Dato un elemento si va a 
+cercare a metà della collezione. se l'elemento è inferiore si va a cercare nella metà della metà inferiore, 
+altrimenti in quella superiore.
+
+
+
 
 
 
