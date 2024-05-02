@@ -67,6 +67,20 @@ ricerca binaria: per eseguirla è necessario che la collezione sia ordinata. Dat
 cercare a metà della collezione. se l'elemento è inferiore si va a cercare nella metà della metà inferiore, 
 altrimenti in quella superiore.
 
+gramatica: una quadrupla formata da <Σ, N, P, S> dove Σ = caratteri terminali, N = caratteri non terminali
+P = insieme finito di produzioni, S = simbolo iniziale
+
+2-3 albero: una struttura dati ad albero dove i dati sono memorizzati solo nelle foglie.
+ogni nodo interno deve avere min2 max 3 figli. i dati (foglie) sono tutti allo stesso livello.
+i nodi interni contengono degli indici (S) la chiave masssima contenuta nel sottoalbero sx e, 
+se il nodo ha 3 figli, (M) la chiave chiave del sottoalbero centrale. costo delle operazioni logaritmico
+
+lambda astrazione: oggetto inserito nell'ambiente dinamico a seguito di una dichiarazione di funzione
+<id-funzione> <lambda-astrazione> composto da { parametri-formali, chiusura }
+
+chiusura (closure): < ambiente di memoria> nel caso di scope statico l'ambiente comprende le occorrenze
+di legame a eventuali identificatori liberi all'interno della funzione, in scope dinamico l'ambiente 
+è vuoto
 
 
 
