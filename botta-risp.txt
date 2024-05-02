@@ -82,7 +82,7 @@ chiusura (closure): < ambiente di memoria> nel caso di scope statico l'ambiente 
 di legame a eventuali identificatori liberi all'interno della funzione, in scope dinamico l'ambiente 
 è vuoto
 
-
+scope di blocco: un dato identificatore è visibile solo nel blocco in cui è stato dichiarato.
 
 
 
