@@ -84,6 +84,10 @@ di legame a eventuali identificatori liberi all'interno della funzione, in scope
 
 scope di blocco: un dato identificatore è visibile solo nel blocco in cui è stato dichiarato.
 
+3-sat: data una formula booleana dove ogni clausola contiene esattamente 3 variabili e ogni clausola
+è legata in AND c'è da stabilire se esiste un modo di assegnare i valore x1, x2, x3 tale per cui
+la formula risulti vera. è un problema NP-completo.
+
 
 
 
