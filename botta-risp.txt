@@ -80,14 +80,36 @@ lambda astrazione: oggetto inserito nell'ambiente dinamico a seguito di una dich
 
 chiusura (closure): < ambiente di memoria> nel caso di scope statico l'ambiente comprende le occorrenze
 di legame a eventuali identificatori liberi all'interno della funzione, in scope dinamico l'ambiente 
-è vuoto
+è vuoto 
 
 scope di blocco: un dato identificatore è visibile solo nel blocco in cui è stato dichiarato.
 
 3-sat: data una formula booleana dove ogni clausola contiene esattamente 3 variabili e ogni clausola
 è legata in AND c'è da stabilire se esiste un modo di assegnare i valore x1, x2, x3 tale per cui
 la formula risulti vera. è un problema NP-completo.
+sat incapsula tutti i porblemi in NP, il che significa che tutti i problemi in NP possono essere 
+ridotti a sat.
 
+np-completo: i problemi più difficili appartenenti alla classe NP, ovvero appartengono alla
+classe NP e sono NP-hard. Un problema NP completo può essere usato per risolvere qualsiasi
+problema in NP
+
+np-hard: un problema A è più difficile del problema B se risolvendo A è possibile anche risolvere B.
+Per spiegare questo concetto si usa SAT.
+
+
+A <= B significa che il problema A è contenuto nel problema B. Risolvere B permette di risolvere A.
+risoluzione di A: porto un'istanza di a in un'istanza di b. risolvo l'istanza b e uso tale soluzione
+per a.
+a -> b		(b)
+
+classe P: problemi decisinali risolvibili in tempo polinomiale nella dimensione n dell'istanza di
+ingresso.
+
+classe NP: l'insieme di tutti i problemi decisionali che ammettono certificato in tempo polinomiale
+
+Quantified boolean formula (QBF): è una generalizzazione del problema SAT nel quale ad ogni variabile
+possono essere applicati quantificatori universali (per ogni) e esistenziali (esiste)
 
 
 
